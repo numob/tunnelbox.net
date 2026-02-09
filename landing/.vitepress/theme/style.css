@@ -129,6 +129,64 @@
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
 
+/* Landing page gradient continuation */
+.VPNavBar {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.VPContent {
+  background: #1C1222
+  /* linear-gradient(to bottom, #000000, #653D81); */
+}
+
+/* Prevent blur overlay */
+.VPNavBar.has-sidebar {
+  backdrop-filter: none !important;
+}
+
+/* Search pill */
+.DocSearch-Button {
+  border-radius: 9999px !important;
+  padding: 0.45rem 0.9rem !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: white !important;
+}
+
+.DocSearch-Button:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Modal input */
+.DocSearch-Input {
+  border-radius: 9999px !important;
+}
+
+/* Icon */
+.DocSearch-Search-Icon {
+  color: white !important;
+}
+
+
+/* Transparent footer */
+.VPFooter {
+  background: transparent !important;
+  border-top: none !important;
+}
+
+/* Footer text on dark gradient */
+.VPFooter,
+.VPFooter a {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Hover state */
+.VPFooter a:hover {
+  color: white;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
