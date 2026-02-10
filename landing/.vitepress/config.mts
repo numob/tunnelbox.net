@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite'
 // -----------------------------------------------------------------------------
 
 export default defineConfig({
+  base: '/tunnelbox.net/',
   title: 'Tunnelbox',
   description: 'A plug-and-play hardware tunneling solution for developers',
 
