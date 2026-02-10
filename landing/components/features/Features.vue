@@ -177,13 +177,37 @@
   gap: 1rem;
 }
 
-/* .btn{
+.btn{
   border: 2px;  
-  background: whitesmoke;
-  padding: 12px 16px;
-  font-weight: 600;
-  border-radius: 15px;
-} */
+  /* background: whitesmoke; */
+  padding: 7px 24px;
+  font-weight: 450;
+  font-size: 18.9px;
+  border-radius: 17.34px;
+  background: #FFFFFF33;
+}
+
+.cta-pill{
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.1px;
+
+  background: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
+
+  /* border: 1px solid var(--pill-stroke); */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 10px 24px rgba(0,0,0,0.25);
+  transition: transform .15s ease, filter .15s ease;
+}
+
 
 .section {
   margin-bottom: 5rem;
