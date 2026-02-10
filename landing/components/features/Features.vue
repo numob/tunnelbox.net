@@ -177,13 +177,13 @@
   gap: 1rem;
 }
 
-.btn{
+/* .btn{
   border: 2px;  
   background: whitesmoke;
   padding: 12px 16px;
   font-weight: 600;
   border-radius: 15px;
-}
+} */
 
 .section {
   margin-bottom: 5rem;

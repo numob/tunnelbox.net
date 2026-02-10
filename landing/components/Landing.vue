@@ -260,7 +260,7 @@ import Button from 'primevue/button'
   </section>
 </template>
 
-<style scoped>
+<style>
 #hero {
   display: flex;
   flex-direction: column;
