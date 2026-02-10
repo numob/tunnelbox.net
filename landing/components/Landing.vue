@@ -73,17 +73,19 @@ import Button from 'primevue/button'
   </section>
   <!-- Value Prop -->
    <section class="other-section">
+    <div style="padding: 2rem;">
       <div class="subsection-title">
         <span>The features that make tunneling simplier</span>
       </div>
-          <p class="subtitle">
+      <p class="subtitle">
 
-          Tunnelbox offers an array of services in connecting your services to the world.
-        </p>
+        Tunnelbox offers an array of services in connecting your services to the world.
+      </p>
+    </div>
+
 
       <!-- Features -->
-      <div class="features-container">
-
+      <div class="features-grid">
         <div class="features-card">
           <img
           src="/globe.png"
@@ -511,18 +513,16 @@ import Button from 'primevue/button'
 .pricing-card{
   display: flex;
   flex-direction: column;
-  /* background: linear-gradient(0deg, rgba(187, 88, 255, 0.2) 0%, rgba(52, 79, 168, 0.2) 100%),
-  linear-gradient(0deg, #24182C, #24182C); */
-
   background: linear-gradient(0deg, #24182C, #24182C);
 
-  gap: 2rem;
+  gap: 1rem;
   padding: 2rem;
-  /* margin: 36px;s */
+
   width: 100%;
   height: 100%;
   border-radius: 16px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border: 3.67px solid #56346D
 }
 
 .card {
@@ -591,7 +591,26 @@ import Button from 'primevue/button'
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+  gap: 22px;
+  width: 100%;
+  justify-content: center; /* 🔑 centers incomplete rows */
+  align-items: stretch;
+  margin-inline: auto;
+}
 
+@media (min-width: 980px) {
+  .features-grid {
+    grid-auto-rows: 1fr;
+    width: 100%;
+    max-width: 900px;
+    justify-content: center; /* 🔑 centers incomplete rows */
+    align-items: stretch;
+    margin-inline: auto;
+  }
+}
 
 .card-header {
   font-size: 20px;
@@ -627,21 +646,14 @@ import Button from 'primevue/button'
 
 /* ====== Wrapper ====== */
 .pricing-wrap {
-  width: min(1100px, 100%);
+  /* width: min(1100px, 100%); */
   margin-inline: auto;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border-radius: var(--radius-xl);
-  color: var(--ink);
-
-  /* layered glow + base gradient */
-  /* background:
-    radial-gradient(120% 120% at 0% 0%, var(--glow-purple) 0%, rgba(187,88,255,0) 50%),
-    radial-gradient(120% 120% at 100% 100%, var(--glow-indigo) 0%, rgba(86,98,196,0) 55%),
-    linear-gradient(180deg, #2b1a3a 0%, #1c1222 100%);
-  border: 1px solid var(--stroke); */
   box-shadow:
     0 10px 30px rgba(0,0,0,0.35),
     inset 0 1px 0 rgba(255,255,255,0.06);
+  border: 3.67px solid #56346D;
+  border-radius: 30px;
 }
 
 .pricing-title {
@@ -659,7 +671,6 @@ import Button from 'primevue/button'
   grid-template-columns: repeat(3, 1fr);
   gap: 20px; /* separators provide the “gap” visually */
   background: transparent;
-  border-radius: calc(var(--radius-xl) - 4px);
   overflow: hidden; /* clip inner separators on small screens */
 }
 
@@ -670,10 +681,6 @@ import Button from 'primevue/button'
 }
 
 /* Vertical separators between columns (hide on first; appear on 2 and 3) */
-.plan + .plan {
-  border-left: 1px solid var(--stroke);
-}
-
 /* ====== Plan header ====== */
 .plan-head {
   display: grid;
@@ -693,11 +700,13 @@ import Button from 'primevue/button'
   font-size: clamp(1.8rem, 4.6vw, 2.5rem);
   letter-spacing: 0.3px;
   display: flex;
+  padding: 1rem 0;
   align-items: baseline;
   gap: 0.35rem;
 }
+
+
 .plan-price small {
-  color: var(--muted);
   font-weight: 600;
   font-size: 0.45em;
 }
@@ -721,10 +730,6 @@ import Button from 'primevue/button'
 
   border-image-source: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
   background: linear-gradient(180deg, rgba(187, 88, 255, 0.4) 0%, rgba(54, 188, 255, 0.4) 100%);
-
-
-
-
 
   border: 1px solid rgba(255,255,255,0.18);
   box-shadow:
@@ -760,10 +765,6 @@ import Button from 'primevue/button'
   width: min(1160px, 92vw);
   margin-inline: auto;
 
-  /* The “pill” shape background */
-  /* background:
-    radial-gradient(140% 140% at 0% 0%, rgba(187,88,255,0.20) 0%, rgba(187,88,255,0) 55%),
-    linear-gradient(100deg, var(--capsule-grad-start) 0%, var(--capsule-grad-end) 100%); */
   background: linear-gradient(90deg, #1C1222 5.59%, rgba(131, 34, 195, 0.5) 133.65%);
   border-top-right-radius: 419.18px;
   border-bottom-right-radius: 419.18px;
@@ -846,7 +847,6 @@ import Button from 'primevue/button'
   bottom: -14%;           /* hang slightly below the capsule */
   width: clamp(220px, 36vw, 320px);
   height: auto;
-  filter: drop-shadow(var(--shadow-md));
   pointer-events: none;   /* decorative */
   user-select: none;
 }
@@ -869,7 +869,7 @@ import Button from 'primevue/button'
   }
   .plan + .plan {
     border-left: none;
-    border-top: 1px solid var(--stroke);
+    border-top: 1px solid;
   }
 }
 </style>
