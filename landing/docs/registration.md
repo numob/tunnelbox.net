@@ -1,7 +1,6 @@
 # Registering Domains
 
 
-
 If you have not created am account, register your account here!
 
 ## Step 1 

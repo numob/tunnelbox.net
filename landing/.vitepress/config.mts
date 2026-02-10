@@ -47,10 +47,25 @@ export default defineConfig({
           text: 'Getting Started',
           collapsed: false,
           items: [
-            { text: 'Overview', link: '/docs/setup' },
+            { text: 'What is TunnelBox', link: '/docs/overview' }
+          ]
+        },
+        {
+          text: 'Configurations',
+          collapsed: false,
+          items: [
+            { text: 'Setup', link: '/docs/setup' },
             { text: 'Registering Domains', link: '/docs/registration' },
             { text: 'Routing Traffic', link: '/docs/routing' },
             { text: 'Domain Configuration', link: '/docs/configurations' },
+          ]
+        },
+
+        {
+          text: 'Services',
+          collapsed: false,
+          items: [
+            { text: 'Types of Services', link: '/docs/services' },
           ]
         },
         {

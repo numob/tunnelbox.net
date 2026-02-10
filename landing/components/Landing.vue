@@ -48,7 +48,7 @@ import Button from 'primevue/button'
             <div class="image-placeholder">
               
               <img
-                src="/3:4 View.png"
+                src="/box.png"
                 alt="Product Showcase"
                 class="rounded-xl shadow-xl mx-auto"
               />
@@ -155,10 +155,10 @@ import Button from 'primevue/button'
 
       <div class="features-container">
         <div class="hobbyist">
-          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Hobbyists</span>
+          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Hobbyists & Students</span>
         </div>
         <div class="team">
-          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Professional Developers</span>
+          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Developers</span>
         </div>
         <div class="pro">
           <span style="display: flex; justify-content: center; align-items: center; font-size: 40px; font-weight: 650;">Teams & Startups</span>
@@ -249,13 +249,13 @@ import Button from 'primevue/button'
       </div>
 
       <!-- Decorative product image -->
-      <!-- <img
+      <img
         class="hero-device"
-        src="/img/device.png"
+        src="/box.png"
         alt="TunnelBox device"
         loading="eager"
         decoding="async"
-      /> -->
+      />
     </div>
   </section>
 </template>
@@ -768,7 +768,7 @@ import Button from 'primevue/button'
   background: linear-gradient(90deg, #1C1222 5.59%, rgba(131, 34, 195, 0.5) 133.65%);
   border-top-right-radius: 419.18px;
   border-bottom-right-radius: 419.18px;
-  overflow: clip; /* clip the child glow and image */
+  /* overflow: clip; clip the child glow and image */
   min-height: clamp(280px, 40vw, 380px);
 
   display: grid;

@@ -34,7 +34,7 @@
       </div>
       <div class="callout">
         <ul>
-          <li>✔ Zero inbound ports</li>
+          <li>✔ No Additional inbound ports</li>
           <li>✔ Quick and Easy Setup</li>
           <li>✔ Cloud-managed DNS</li>
           <li>✔ Designed for local-first workflows</li>
@@ -136,15 +136,32 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <h2>Stop fighting your network</h2>
-      <p>
-        Tunnelbox gives developers a clean, secure path
-        from localhost to the internet without complexity.
-      </p>
-      <button class="primary large cta-pill">Get Tunnelbox</button>
-    </section>
+      <!-- Final CTA -->
+  <section class="hero-capsule" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 id="hero-title" class="hero-title">
+          Stop fighting your network
+        </h1>
+        <p class="hero-sub">
+          Ship, demo, and test your applications without friction.
+        </p>
+
+        <Button 
+        class="cta-pill">
+        Get TunnelBox</Button>
+      </div>
+
+      <!-- Decorative product image -->
+      <img
+        class="hero-device"
+        src="/box.png"
+        alt="TunnelBox device"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+  </section>
   </main>
 </template>
 
@@ -248,6 +265,63 @@
   border-top: 1px solid var(--vp-c-divider);
 }
 
+/* ===== Capsule container ===== */
+.hero-capsule{
+  /* let it float with whitespace under like the image shows */
+  padding-block: clamp(2rem, 6vw, 4rem);
+  /* let it extend full width while holding a centered inner layout */
+  background: transparent;
+}
+
+.hero-inner{
+  position: relative;
+  width: min(1160px, 92vw);
+  margin-inline: auto;
+
+  background: linear-gradient(90deg, #1C1222 5.59%, rgba(131, 34, 195, 0.5) 133.65%);
+  border-top-right-radius: 419.18px;
+  border-bottom-right-radius: 419.18px;
+  /* overflow: clip; clip the child glow and image */
+  min-height: clamp(280px, 40vw, 380px);
+
+  display: grid;
+  align-items: center;
+  /* leave space left for the device image to “sit” */
+  padding: clamp(1.25rem, 3.5vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.25rem);
+}
+
+/* ===== Copy block (centered) ===== */
+.hero-copy{
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.9rem;
+  margin-inline: auto;
+  /* push content a bit right so it visually centers vs image */
+  padding-left: clamp(0rem, 5vw, 2rem);
+  max-width: 780px;
+}
+
+.hero-title{
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+}
+
+.hero-sub{
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+}
+
+/* force line break to hide on small screens */
+.br-hide-sm{ display: inline; }
+@media (max-width: 560px){
+  .br-hide-sm{ display: none; }
+}
+
 .cta-pill{
   margin-top: clamp(0.5rem, 2vw, 1rem);
   display: inline-flex;
@@ -267,6 +341,17 @@
     inset 0 1px 0 rgba(255,255,255,0.35),
     0 10px 24px rgba(0,0,0,0.25);
   transition: transform .15s ease, filter .15s ease;
+}
+
+/* ===== Device image (lower-left anchored) ===== */
+.hero-device{
+  position: absolute;
+  left: clamp(0.5rem, 2.25vw, 1.25rem);
+  bottom: -14%;           /* hang slightly below the capsule */
+  width: clamp(220px, 36vw, 320px);
+  height: auto;
+  pointer-events: none;   /* decorative */
+  user-select: none;
 }
 
 
