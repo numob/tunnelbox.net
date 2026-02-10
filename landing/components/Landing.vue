@@ -31,17 +31,18 @@ import Button from 'primevue/button'
   
 
   <section id="other">
-    <div class="card">
-      <span class="subsection-title">Why a hardware solution?</span>
-      <p class="subtitle">
-        Developers should focus on what they love: building.
-        A hardware ingress removes the complexity of network configurations
-        like NAT and firewall rules, while providing an additional security
-        layer before traffic reaches your application.
-      </p>
-    </div>
+    <section class="other-section">
+      <div class="card">
+        <span class="subsection-title">Why a hardware solution?</span>
+        <p class="subtitle">
+          Developers should focus on what they love: building.
+          A hardware ingress removes the complexity of network configurations
+          like NAT and firewall rules, while providing an additional security
+          layer before traffic reaches your application.
+        </p>
+      </div>
 
-    <div class="card">
+      <div class="card">
         <div class="hardware-grid">
           <div class="hardware-media">
             <div class="image-placeholder">
@@ -53,8 +54,8 @@ import Button from 'primevue/button'
               />
             </div>
           </div>
-          <div class="subtitle-left">
-            <h3>Made To Be Secure, Used Reliably</h3>
+          <div class="hardware-reason">
+            <h1>Made To Be Secure, Used Reliably</h1>
             <p>
               Tunnelbox is a single-purpose device designed to handle
               tunneling, securely and reliably.
@@ -65,179 +66,195 @@ import Button from 'primevue/button'
             </p>
             <ul>
               <li>Outbound-only connections</li>
-              <!-- <li>Device-level identity</li>
-              <li>Consistent behavior across environments</li> -->
             </ul>
           </div>
       </div>
     </div>
-
+  </section>
   <!-- Value Prop -->
-  <div class="subsection-title">
-    <span>The features that make tunneling simplier</span>
-  </div>
-      <p class="subtitle">
+   <section class="other-section">
+      <div class="subsection-title">
+        <span>The features that make tunneling simplier</span>
+      </div>
+          <p class="subtitle">
 
-      Tunnelbox offers an array of services in connecting your services to the world.
-    </p>
+          Tunnelbox offers an array of services in connecting your services to the world.
+        </p>
 
-  <!-- Features -->
-  <div class="features-container">
+      <!-- Features -->
+      <div class="features-container">
 
-    <div class="features-card">
-      <img
-      src="/globe.png"
-      width="70"
-      hidden
-      />
-      <span class="card-header">Zero Network Configuration</span>
-      <p class="card-body">
-        
-        Tunnelbox works anywhere by creating outbound-only secure tunnels.
-      </p>
-    </div>
+        <div class="features-card">
+          <img
+          src="/globe.png"
+          width="70"
+          />
+          <span class="card-header">Zero Network Configuration</span>
+          <p class="card-body">
+            Tunnelbox works anywhere by creating outbound-only secure tunnels.
+          </p>
+        </div>
 
-    <div class="features-card">
-      <img
-      src="/automatic.png"
-      width="70"
-      hidden
-      />
-      <span class="card-header">Automatic SSL / TLS</span>
-      <p class="card-body">
-        Every domain comes with HTTPS out of the box.
-        Certificates are issued and renewed automatically.
-      </p>
-    </div>
+        <div class="features-card">
+          <img
+          src="/automatic.png"
+          width="70"
+          />
+          <span class="card-header">Automatic SSL / TLS</span>
+          <p class="card-body">
+            Every domain comes with HTTPS out of the box.
+            Certificates are issued and renewed automatically.
+          </p>
+        </div>
 
-    <div class="features-card">
-      <img
-      src="/domains.png"
-      width="70"
-      hidden
-      />
-      <span class="card-header">Free Managed Domains</span>
-      <p class="card-body">
-        Create multiple public domains per device.
-        Route each domain to a different local service or port.
-      </p>
-    </div>
+        <div class="features-card">
+          <img
+          src="/domains.png"
+          width="70"
+          />
+          <span class="card-header">Free Managed Domains</span>
+          <p class="card-body">
+            Create multiple public domains per device.
+            Route each domain to a different local service or port.
+          </p>
+        </div>
 
-    <div class="features-card">
-      <img
-      src="/developer.png"
-      width="70"
-      hidden
-      />
-      <span class="card-header">Built for Developers</span>
-      <p class="card-body">
-        Perfect for webhooks, demos, dashboards, staging environments,
-        and internal tools running on localhost.
-      </p>
-    </div>
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">Built for Developers</span>
+          <p class="card-body">
+            Perfect for webhooks, demos, dashboards, staging environments,
+            and internal tools running on localhost.
+          </p>
+        </div>
 
-    <div class="features-card">
-      <img
-      src="/security.png"
-      width="70"
-      hidden
-      />
-      <span class="card-header">Hardware-Backed Security</span>
-      <p class="card-body">
-        Your tunnels are tied to a physical device,
-        reducing attack surface and credential leakage.
-      </p>
-    </div>
+        <div class="features-card">
+          <img
+          src="/security.png"
+          width="70"
+          />
+          <span class="card-header">Hardware-Backed Security</span>
+          <p class="card-body">
+            Your tunnels are tied to a physical device,
+            reducing attack surface and credential leakage.
+          </p>
+        </div>
 
-  </div>
-        <div class="subsection-title">
+      </div>
+  </section>
+  <section class="other-section tunnelbox-who">
+
+      <div class="subsection-title">
         <span>Who is Tunnelbox for?</span>
       </div>
 
       <div class="features-container">
-        <div class="card">
-          <span class="card-header">Hobbyists</span>
-          <p class="card-body">
-            Share side projects, personal dashboards, or home services
-            without touching your router.
-          </p>
+        <div class="hobbyist">
+          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Hobbyists</span>
         </div>
-        <div class="card">
-          <span class="card-header">Professional Developers</span>
-          <p class="card-body">
-            Receive webhooks, demo live features, and test integrations
-            directly against localhost.
-          </p>
+        <div class="team">
+          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Professional Developers</span>
         </div>
-        <div class="card">
-          <span class="card-header">Teams & Startups</span>
-          <p class="card-body">
-            Standardize tunneling without relying on personal machines
-            or fragile dev setups.
-          </p>
+        <div class="pro">
+          <span style="display: flex; justify-content: center; align-items: center; font-size: 40px; font-weight: 650;">Teams & Startups</span>
         </div>
       </div>
 
-
-  <section class="hardware-pricing">
-      <h2>Hardware pricing</h2>
-      <p>
-        Tunnelbox is a purpose-built device designed for reliability and security.
-      </p>
-      <div class="hardware-card">
-        <h3>Tunnelbox Device</h3>
-        <div class="price">$---<span> one-time</span></div>
-        <ul class="nah">
-          <li>Pre-provisioned & ready to claim</li>
-          <li>Automatic updates</li>
-          <li>Secure device identity</li>
-        </ul>
-      </div>
-    </section>
+    
+  </section>
   
   <!-- Use Cases -->
+<section class="pricing-wrap" aria-labelledby="pricing-title">
+  <h2 id="pricing-title" class="pricing-title">Subscription Pricing</h2>
 
+  <div class="plans" role="list">
+    <!-- Starter -->
+    <article class="pricing-card" role="listitem" aria-label="Starter plan">
+      <header class="plan-head">
+        <h3 class="plan-name">Starter</h3>
+        <div class="plan-price">
+          $## <small>/month</small>
+        </div>
+        <div class="plan-pill" aria-hidden="true">
+          For hobby projects &amp; experimentation
+        </div>
+      </header>
+      <ul class="plan-features">
+        <li>Something</li>
+        <li>Limited domains</li>
+        <li>Community support</li>
+      </ul>
+    </article>
 
-    <div class="subsection-title">
-      <span>Subscription Pricing</span>
-    </div>
+    <!-- Pro -->
+    <article class="pricing-card" role="listitem" aria-label="Pro plan">
+      <header class="plan-head">
+        <h3 class="plan-name">Pro</h3>
+        <div class="plan-price">
+          $## <small>/month</small>
+        </div>
+        <div class="plan-pill" aria-hidden="true">
+          For serious development work
+        </div>
+      </header>
+      <ul class="plan-features">
+        <li>Something</li>
+        <li>Unlimited domains</li>
+        <li>Priority support</li>
+      </ul>
+    </article>
 
-    <div class="pricing-container">
-      <div class="card">
-        <span class="card-header">Starter</span>
-        <p class="card-body">For hobby projects and experimentation</p>
-        <ul>
-          <li>Something</li>
-          <li>Limited domains</li>
-          <li>Community support</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="card-header">Pro</span>
-        <p class="card-body">For serious development work</p>
-        <ul>
-          <li>Somethign</li>
-          <li>Unlimited domains</li>
-          <li>Priority support</li>
-        </ul>
-      </div>
-      <div class="card">
-        <span class="card-header">Team</span>
-        <p class="card-body">For teams and companies</p>
-        <ul>
-          <li>Somethings</li>
-          <li>Access controls</li>
-          <li>SLA & support</li>
-        </ul>
-      </div>
-    </div>
+    <!-- Team -->
+    <article class="pricing-card" role="listitem" aria-label="Team plan">
+      <header class="plan-head">
+        <h3 class="plan-name">Team</h3>
+        <div class="plan-price">
+          $## <small>/month</small>
+        </div>
+        <div class="plan-pill" aria-hidden="true">
+          For teams &amp; companies
+        </div>
+      </header>
+      <ul class="plan-features">
+        <li>Something</li>
+        <li>Access controls</li>
+        <li>SLA &amp; Support</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
   </section>
 
   <!-- Final CTA -->
-  <section class="cta">
-    <h2>Focus on building, not complicated network configurations.</h2>
-    <p>Ship, demo, and test your applications without friction.</p>
-    <Button class="btn" label="Get Tunnelbox" size="large" />
+  <section class="hero-capsule" aria-labelledby="hero-title">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 id="hero-title" class="hero-title">
+          Focus on building, not complicated<br class="br-hide-sm" />
+          network configurations.
+        </h1>
+        <p class="hero-sub">
+          Ship, demo, and test your applications without friction.
+        </p>
+
+        <Button 
+        class="cta-pill">
+        Get TunnelBox</Button>
+      </div>
+
+      <!-- Decorative product image -->
+      <!-- <img
+        class="hero-device"
+        src="/img/device.png"
+        alt="TunnelBox device"
+        loading="eager"
+        decoding="async"
+      /> -->
+    </div>
   </section>
 </template>
 
@@ -247,6 +264,7 @@ import Button from 'primevue/button'
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  width: 100%;
   padding: 4rem 1rem;
 
 }
@@ -256,16 +274,78 @@ import Button from 'primevue/button'
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 1.5rem;
-  padding: 4rem 1rem;
+  gap: 6rem;
+  /* padding: 4rem 1rem;s */
 }
 
-html, body {
-  min-height: 100%;
+.hobbyist{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-image: url('/Hobbyists.png');
+
+  /* padding: 20px; */
+  /* object-fit: contain; */
+  /* height: 100vh; */
+  background-size: cover;   /* fill container */
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-body {
-  margin: 0;
+.team{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-image: url('/Teams&Startups.png');
+  border-radius: 30px;
+  /* padding: 20px; */
+  object-fit: fill;
+  /* height: 100vh; */
+  background-size: cover;   /* fill container */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.pro{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-image: url('/Professional Devs.png');
+  border-radius: 30px;
+  /* padding: 20px; */
+  object-fit: fill;
+  /* height: 100vh; */
+  background-size: cover;   /* fill container */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.other-section{
+  padding: 0 150px;
+}
+
+.hardware-reason {
+  display: flex;
+  flex-direction: column;
+
+  /* make the content fill the card */
+  height: 100%;
+
+  /* center content vertically and horizontally */
+  justify-content: center; /* vertical centering */
+
+  font-weight: 450;
+  gap: 2rem;
+}
+
+.hardware-reason h1 {
+  font-size: 30px;
+  font-weight: 650;
 }
 
 
@@ -290,12 +370,24 @@ body {
   margin-bottom: 5rem;
 }
 
+.tunnelbox-who{
+  min-height: 40rem;
+  background-image: url('/who_tunnelbox.png');
+  padding: 20px;
+  object-fit: fill;
+  width: 100vw;
+  background-size: cover;   /* fill container */
+  background-position: center;
+  background-repeat: no-repeat;
+  /* height: 100vh; */
+}
+
 .hardware-card {
   list-style: none;
   max-width: 420px;
   margin: 2rem auto 0;
   padding: 2rem;
-  width: 100%;
+
   border-radius: 16px;
   background:
     /* left-bottom blue glow */
@@ -322,11 +414,13 @@ body {
 
 
 .hero-section {
-  width: 100vw;
-  min-height: 100vh;
+  /* width: 100vw;
+  min-height: 100vh; */
+  background-size: cover;
+  background-position: center;
 
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  /* margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw); */
 
 
   background: linear-gradient(
@@ -404,17 +498,38 @@ body {
 
 .features-container,
 .pricing-container {
+  min-height: 30rem;
+  padding: 0 6rem;
   display: grid;
+  align-items: stretch;
   gap: 30px;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  width: 100%;
+  margin: 4rem auto;
+}
 
+.pricing-card{
+  display: flex;
+  flex-direction: column;
+  /* background: linear-gradient(0deg, rgba(187, 88, 255, 0.2) 0%, rgba(52, 79, 168, 0.2) 100%),
+  linear-gradient(0deg, #24182C, #24182C); */
+
+  background: linear-gradient(0deg, #24182C, #24182C);
+
+  gap: 2rem;
+  padding: 2rem;
+  /* margin: 36px;s */
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 .card {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  width: 100%;
+  /* width: 100%; */
   background:
     /* left-bottom blue glow */
     radial-gradient(
@@ -471,10 +586,11 @@ body {
     );
 
   padding: 2rem;
-  margin: 36px;
+  /* margin: 36px; */
   border-radius: 16px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
+
 
 
 .card-header {
@@ -505,5 +621,255 @@ body {
 .cta {
   text-align: center;
   padding: 4rem 1rem;
+}
+
+/* ====== Theme tokens (tweak to taste) ====== */
+
+/* ====== Wrapper ====== */
+.pricing-wrap {
+  width: min(1100px, 100%);
+  margin-inline: auto;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: var(--radius-xl);
+  color: var(--ink);
+
+  /* layered glow + base gradient */
+  /* background:
+    radial-gradient(120% 120% at 0% 0%, var(--glow-purple) 0%, rgba(187,88,255,0) 50%),
+    radial-gradient(120% 120% at 100% 100%, var(--glow-indigo) 0%, rgba(86,98,196,0) 55%),
+    linear-gradient(180deg, #2b1a3a 0%, #1c1222 100%);
+  border: 1px solid var(--stroke); */
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.pricing-title {
+  text-align: center;
+  font-size: clamp(1.25rem, 3.6vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  margin: 0 0 clamp(1rem, 3vw, 1.5rem);
+  font-weight: 800;
+}
+
+/* ====== Plans grid ====== */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* separators provide the “gap” visually */
+  background: transparent;
+  border-radius: calc(var(--radius-xl) - 4px);
+  overflow: hidden; /* clip inner separators on small screens */
+}
+
+/* Each plan column */
+.plan {
+  padding: clamp(1rem, 3vw, 1.75rem);
+  position: relative;
+}
+
+/* Vertical separators between columns (hide on first; appear on 2 and 3) */
+.plan + .plan {
+  border-left: 1px solid var(--stroke);
+}
+
+/* ====== Plan header ====== */
+.plan-head {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+.plan-name {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+}
+
+.plan-price {
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4.6vw, 2.5rem);
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+.plan-price small {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.45em;
+}
+
+/* ====== Gradient pill ====== */
+.plan-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  padding: 0.75rem 3rem;
+
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.8vw, 0.95rem);
+  color: #fff;
+  text-align: center;
+
+  /* inner glass + color gradient */
+  border: 2px solid;
+
+  border-image-source: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
+  background: linear-gradient(180deg, rgba(187, 88, 255, 0.4) 0%, rgba(54, 188, 255, 0.4) 100%);
+
+
+
+
+
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 10px 24px rgba(0,0,0,0.25);
+}
+
+/* ====== Features list ====== */
+.plan-features {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.65rem;
+  color: var(--ink);
+}
+.plan-features li {
+  line-height: 1.45;
+  font-size: clamp(0.92rem, 1.8vw, 1rem);
+  opacity: 0.95;
+}
+/* ===== Theme tokens ===== */
+
+/* ===== Capsule container ===== */
+.hero-capsule{
+  /* let it float with whitespace under like the image shows */
+  padding-block: clamp(2rem, 6vw, 4rem);
+  /* let it extend full width while holding a centered inner layout */
+  background: transparent;
+}
+
+.hero-inner{
+  position: relative;
+  width: min(1160px, 92vw);
+  margin-inline: auto;
+
+  /* The “pill” shape background */
+  /* background:
+    radial-gradient(140% 140% at 0% 0%, rgba(187,88,255,0.20) 0%, rgba(187,88,255,0) 55%),
+    linear-gradient(100deg, var(--capsule-grad-start) 0%, var(--capsule-grad-end) 100%); */
+  background: linear-gradient(90deg, #1C1222 5.59%, rgba(131, 34, 195, 0.5) 133.65%);
+  border-top-right-radius: 419.18px;
+  border-bottom-right-radius: 419.18px;
+  overflow: clip; /* clip the child glow and image */
+  min-height: clamp(280px, 40vw, 380px);
+
+  display: grid;
+  align-items: center;
+  /* leave space left for the device image to “sit” */
+  padding: clamp(1.25rem, 3.5vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.25rem);
+}
+
+/* ===== Copy block (centered) ===== */
+.hero-copy{
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.9rem;
+  margin-inline: auto;
+  /* push content a bit right so it visually centers vs image */
+  padding-left: clamp(0rem, 5vw, 2rem);
+  max-width: 780px;
+}
+
+.hero-title{
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+}
+
+.hero-sub{
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+}
+
+/* force line break to hide on small screens */
+.br-hide-sm{ display: inline; }
+@media (max-width: 560px){
+  .br-hide-sm{ display: none; }
+}
+
+/* ===== CTA pill button ===== */
+.cta-pill{
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.1px;
+
+  background: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
+
+  /* border: 1px solid var(--pill-stroke); */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 10px 24px rgba(0,0,0,0.25);
+  transition: transform .15s ease, filter .15s ease;
+}
+
+.cta-pill:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+.cta-pill:active{
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+
+/* ===== Device image (lower-left anchored) ===== */
+.hero-device{
+  position: absolute;
+  left: clamp(0.5rem, 2.25vw, 1.25rem);
+  bottom: -14%;           /* hang slightly below the capsule */
+  width: clamp(220px, 36vw, 320px);
+  height: auto;
+  filter: drop-shadow(var(--shadow-md));
+  pointer-events: none;   /* decorative */
+  user-select: none;
+}
+
+/* Tweak image behavior on very small screens */
+@media (max-width: 680px){
+  .hero-device{
+    width: clamp(180px, 50vw, 240px);
+    bottom: -10%;
+    opacity: 0.95;
+  }
+  .hero-copy{
+    padding-left: 0;
+  }
+}
+/* ====== Responsiveness ====== */
+@media (max-width: 900px) {
+  .plans {
+    grid-template-columns: 1fr;
+  }
+  .plan + .plan {
+    border-left: none;
+    border-top: 1px solid var(--stroke);
+  }
 }
 </style>

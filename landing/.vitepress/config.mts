@@ -35,14 +35,7 @@ export default defineConfig({
         ]
       },
       { text: 'Features', link: '/features' },
-      // { text: 'Pricing', link: '/pricing' },
-      // { text: 'Blog', link: '/blog' },
-      // { text: 'About', link: '/qanda' },
       { text: 'Q&A', link: '/qanda' },
-      // {
-      //   text: 'Get Tunnelbox',
-      //   link: '/pricing',
-      // }
     ],
 
     sidebar: {
