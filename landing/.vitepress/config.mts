@@ -14,6 +14,8 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
 
+  appearance: 'force-dark', 
+
   head: [
     ['meta', { name: 'theme-color', content: '#000000' }],
     ['meta', { name: 'og:type', content: 'website' }],

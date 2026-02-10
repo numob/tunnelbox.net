@@ -143,7 +143,7 @@
         Tunnelbox gives developers a clean, secure path
         from localhost to the internet without complexity.
       </p>
-      <button class="primary large">Get Tunnelbox</button>
+      <button class="primary large cta-pill">Get Tunnelbox</button>
     </section>
   </main>
 </template>
@@ -247,6 +247,28 @@
   padding: 4rem 2rem;
   border-top: 1px solid var(--vp-c-divider);
 }
+
+.cta-pill{
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.35rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: 0.1px;
+
+  background: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
+
+  /* border: 1px solid var(--pill-stroke); */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 10px 24px rgba(0,0,0,0.25);
+  transition: transform .15s ease, filter .15s ease;
+}
+
 
 button.primary {
   padding: 0.75rem 1.5rem;
