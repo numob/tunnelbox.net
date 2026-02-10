@@ -1,0 +1,1 @@
+import{_ as t,o as e,c as o}from"./chunks/framework.BJybqDTa.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"docs/routing.md","filePath":"docs/routing.md","lastUpdated":1770663175000}'),a={name:"docs/routing.md"};function r(s,n,c,d,i,p){return e(),o("div")}const f=t(a,[["render",r]]);export{m as __pageData,f as default};
