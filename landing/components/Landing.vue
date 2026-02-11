@@ -163,60 +163,42 @@ import Button from 'primevue/button'
   
   <!-- Use Cases -->
 <section class="pricing-wrap" aria-labelledby="pricing-title">
-  <h2 id="pricing-title" class="pricing-title">Subscription Pricing</h2>
+  <h2 id="pricing-title" class="pricing-title">Pricing</h2>
 
   <div class="plans" role="list">
-    <!-- Starter -->
     <article class="pricing-card" role="listitem" aria-label="Starter plan">
       <header class="plan-head">
-        <h3 class="plan-name">Starter</h3>
+        <h3 class="plan-name">TunnelBox Price</h3>
         <div class="plan-price">
-          $## <small>/month</small>
+          $249 <small>one-time</small>
         </div>
         <div class="plan-pill" aria-hidden="true">
-          For hobby projects &amp; experimentation
+          Includes the full hardware package
         </div>
       </header>
       <ul class="plan-features">
-        <li>Something</li>
-        <li>Limited domains</li>
-        <li>Community support</li>
+        <li>1x TunnelBox</li>
+        <li>1x Ethernet Cable</li>
+        <li>1x Power Cable</li>
+        <li>1x Power Adapter</li>
       </ul>
     </article>
 
     <!-- Pro -->
     <article class="pricing-card" role="listitem" aria-label="Pro plan">
       <header class="plan-head">
-        <h3 class="plan-name">Pro</h3>
+        <h3 class="plan-name">Yearly Subscription</h3>
         <div class="plan-price">
-          $## <small>/month</small>
+          $199 <small>/year</small>
         </div>
         <div class="plan-pill" aria-hidden="true">
-          For serious development work
+          A once a year payment and we'll handle the rest
         </div>
       </header>
       <ul class="plan-features">
-        <li>Something</li>
-        <li>Unlimited domains</li>
-        <li>Priority support</li>
-      </ul>
-    </article>
-
-    <!-- Team -->
-    <article class="pricing-card" role="listitem" aria-label="Team plan">
-      <header class="plan-head">
-        <h3 class="plan-name">Team</h3>
-        <div class="plan-price">
-          $## <small>/month</small>
-        </div>
-        <div class="plan-pill" aria-hidden="true">
-          For teams &amp; companies
-        </div>
-      </header>
-      <ul class="plan-features">
-        <li>Something</li>
-        <li>Access controls</li>
-        <li>SLA &amp; Support</li>
+        <li>TLS support</li>
+        <li>Rerouting</li>
+        <li>Security</li>
       </ul>
     </article>
   </div>
@@ -665,7 +647,7 @@ import Button from 'primevue/button'
 /* ====== Plans grid ====== */
 .plans {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px; /* separators provide the “gap” visually */
   background: transparent;
   overflow: hidden; /* clip inner separators on small screens */
