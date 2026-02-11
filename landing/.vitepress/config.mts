@@ -37,8 +37,13 @@ export default defineConfig({
           { text: 'Troubleshooting', link: '/docs/troubleshooting' },
         ]
       },
-      { text: 'Features', link: '/features' },
+      // { text: 'Features', link: '/features' },
       { text: 'Q&A', link: '/qanda' },
+      // {
+      //   text: 'Console',
+      //   link: 'https://console.tunnelbox.net',
+      //   target: '_blank',
+      // }
     ],
 
     sidebar: {
@@ -77,10 +82,6 @@ export default defineConfig({
         }
       ]
     },
-
-    // socialLinks: [
-    //   { icon: 'github', link: 'https://github.com/irvinesoft' },
-    // ],
 
     footer: {
       message: 'test',

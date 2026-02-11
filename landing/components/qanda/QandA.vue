@@ -68,7 +68,7 @@ function toggle(index: number) {
         </div>
       </div>
     </div>
-
+<!-- 
     <footer class="qa-footer">
       <p>
         Still have questions?
@@ -76,7 +76,7 @@ function toggle(index: number) {
         or
         <a href="/pricing">view pricing</a>.
       </p>
-    </footer>
+    </footer> -->
   </section>
 </template>
 

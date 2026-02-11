@@ -149,9 +149,12 @@ html {
 
 /* Landing page gradient continuation */
 .VPNavBar {
-  background: transparent !important;
+  background: rgba(0, 0, 0, 0.45) !important; /* translucent */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
   border-bottom: none !important;
 }
+
 
 .VPContent {
   background: #1C1222

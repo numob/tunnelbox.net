@@ -1,1 +1,0 @@
-import{_ as e,o as s,c as t}from"./chunks/framework.BJybqDTa.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"docs/services.md","filePath":"docs/services.md","lastUpdated":null}'),a={name:"docs/services.md"};function c(r,o,n,d,i,p){return s(),t("div")}const m=e(a,[["render",c]]);export{l as __pageData,m as default};

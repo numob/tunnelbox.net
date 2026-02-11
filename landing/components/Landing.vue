@@ -14,8 +14,13 @@ import Button from 'primevue/button'
       We'll handle everything, securely.
       </span>
       <div class="hero-actions">
-        <Button class="btn" href="" label="View On Kickstarter" />
-        <Button class="btn" href="/docs/docs/setup.md" label="Learn More" severity="secondary" />
+       <a
+          class="btn"
+          href="https://www.kickstarter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View On Kickstarter</a>
+        <!-- <a class="btn" href="/">Learn More</a> -->
       </div>
 
       <img
@@ -72,7 +77,7 @@ import Button from 'primevue/button'
     </div>
   </section>
   <!-- Value Prop -->
-   <section class="other-section">
+   <section class="other-section" style="gap: 4rem;">
     <div style="padding: 2rem;">
       <div class="subsection-title">
         <span>The features that make tunneling simplier</span>
@@ -130,18 +135,6 @@ import Button from 'primevue/button'
           <p class="card-body">
             Perfect for webhooks, demos, dashboards, staging environments,
             and internal tools running on localhost.
-          </p>
-        </div>
-
-        <div class="features-card">
-          <img
-          src="/security.png"
-          width="70"
-          />
-          <span class="card-header">Hardware-Backed Security</span>
-          <p class="card-body">
-            Your tunnels are tied to a physical device,
-            reducing attack surface and credential leakage.
           </p>
         </div>
 
@@ -243,9 +236,14 @@ import Button from 'primevue/button'
           Ship, demo, and test your applications without friction.
         </p>
 
-        <Button 
-        class="cta-pill">
-        Get TunnelBox</Button>
+        <a
+          class="cta-pill"
+          href="https://www.kickstarter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+        Get TunnelBox</a>
       </div>
 
       <!-- Decorative product image -->
@@ -372,16 +370,22 @@ import Button from 'primevue/button'
   margin-bottom: 5rem;
 }
 
-.tunnelbox-who{
-  min-height: 40rem;
-  background-image: url('/who_tunnelbox.png');
+.tunnelbox-who {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centering */
+  align-items: center;       /* horizontal centering */
+
+  text-align: center;        /* center text inside children */
+
+  min-height: 50rem;
   padding: 20px;
-  object-fit: fill;
   width: 100vw;
-  background-size: cover;   /* fill container */
+
+  background-image: url('/who_tunnelbox.png');
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* height: 100vh; */
 }
 
 .hardware-card {
@@ -464,6 +468,7 @@ import Button from 'primevue/button'
   font-size: 28px;
   font-weight: 450;
   text-align: center;
+  line-height: 1.3;
   max-width: 1042px;
 }
 
@@ -593,24 +598,16 @@ import Button from 'primevue/button'
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, max-content));
+  grid-auto-flow: column;      /* 👈 one row */
+  grid-auto-columns: minmax(260px, 1fr);
   gap: 22px;
+
   width: 100%;
-  justify-content: center; /* 🔑 centers incomplete rows */
-  align-items: stretch;
-  margin-inline: auto;
+  overflow-x: auto;            /* allows scroll instead of wrapping */
 }
 
-@media (min-width: 980px) {
-  .features-grid {
-    grid-auto-rows: 1fr;
-    width: 100%;
-    max-width: 900px;
-    justify-content: center; /* 🔑 centers incomplete rows */
-    align-items: stretch;
-    margin-inline: auto;
-  }
-}
+
+
 
 .card-header {
   font-size: 20px;
