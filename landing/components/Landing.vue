@@ -6,12 +6,10 @@ import Button from 'primevue/button'
   <!-- Hero -->
   <section class="hero-section">
     <div id="hero">
-      <span class="tagline">Hardware Gateway To Expose Your Apps Worldwide</span>
+      <span class="tagline">TunnelBox is a Hardware Gateway To Expose Your Local Servers & AI Models Publicly </span>
       <span class="sub-tagline">
-
-      You love building. We love building too. So we made TunnelBox 
-      to get your application to the world easier, simpler, and faster. 
-      We'll handle everything, securely.
+        A dedicated hardware gateway that bridges your private network to the public internet
+        making it effortless to expose development servers, staging environments, and AI inference endpoints securely.
       </span>
       <div class="hero-actions">
        <a
@@ -122,7 +120,7 @@ import Button from 'primevue/button'
           <span class="card-header">Free Managed Domains</span>
           <p class="card-body">
             Create multiple public domains per device.
-            Route each domain to a different local service or port.
+            <!-- Route each domain to a different local service or port. -->
           </p>
         </div>
 
@@ -133,12 +131,79 @@ import Button from 'primevue/button'
           />
           <span class="card-header">Built for Developers</span>
           <p class="card-body">
-            Perfect for webhooks, demos, dashboards, staging environments,
-            and internal tools running on localhost.
+            Designed for developers shipping fast. 
+            Expose localhost for webhooks, share live demos,
+             deploy staging environments, or publish AI inference endpoints in seconds.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">One Box To Connect Multiple Services</span>
+          <p class="card-body">
+            Expose multiple local services from a single device. 
+            Route traffic to different ports, containers, or services without additional hardware
           </p>
         </div>
 
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">Plug & Play</span>
+          <p class="card-body">
+            Plug it into power and your router, complete a quick setup, 
+            and you’re live. No additional configurations.
+          </p>
+        </div>
+
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">Regular Updates</span>
+          <p class="card-body">
+            A Security patches, firmware upgrades, and new features are delivered
+            keeping your gateway secure and optimized.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">One Year of Free Subscription</span>
+          <p class="card-body">
+              Every device includes one year of TunnelBox service — 
+              including managed domains, SSL, and updates.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">End-to-End Encryption</span>
+          <p class="card-body">
+            All traffic is encrypted between TunnelBox and end user. 
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">Easily Control Where Your Traffic Goes</span>
+          <p class="card-body">
+            Expose local LLMs, inference servers, or edge AI systems as production-ready HTTPS endpoints.
+          </p>
+        </div>
       </div>
+      
   </section>
   <section class="other-section tunnelbox-who">
 
@@ -580,14 +645,10 @@ import Button from 'primevue/button'
 
 .features-grid {
   display: grid;
-  grid-auto-flow: column;      /* 👈 one row */
-  grid-auto-columns: minmax(260px, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 22px;
-
   width: 100%;
-  overflow-x: auto;            /* allows scroll instead of wrapping */
 }
-
 
 
 
