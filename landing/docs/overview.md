@@ -6,7 +6,7 @@ TunnelBox is a hardware tunneling solution to quickly and safely expose you appl
 
 Contemporary solutions such as cloudflare or nrok require extensive network and software configurations. Tunnelbox was created
 to simplify the procedure of exposing your applicaiton to the internet. Without complex configuration, developers can now develop with quick iterations,
-testing webhooks, versions, etc. without worrying the complicated stuff.
+test webhooks, versions, etc. without worrying about the complicated stuff.
 
 ## Who is TunnelBox For?
 

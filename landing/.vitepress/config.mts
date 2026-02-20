@@ -31,9 +31,9 @@ export default defineConfig({
         text: 'Docs',
         items: [
           { text: 'Getting Started', link: '/docs/overview' },
-          { text: 'Registration', link: '/docs/registration' },
-          { text: 'Routing', link: '/docs/routing' },
-          { text: 'Domains', link: '/docs/configurations' },
+          { text: 'TunnelBox Setup', link: '/docs/tunnelbox' },
+          { text: 'Domains Setup', link: '/docs/domain' },
+          { text: 'Routing Setup', link: '/docs/routing' },
           { text: 'Troubleshooting', link: '/docs/troubleshooting' },
         ]
       },
@@ -59,18 +59,20 @@ export default defineConfig({
           text: 'Configurations',
           collapsed: false,
           items: [
-            { text: 'Setup', link: '/docs/setup' },
-            { text: 'Registering Domains', link: '/docs/registration' },
+            { text: 'Registering a TunnelBox', link: '/docs/tunnelbox' },
+            { text: 'Registering Domains', link: '/docs/domain' },
             { text: 'Routing Traffic', link: '/docs/routing' },
-            { text: 'Domain Configuration', link: '/docs/configurations' },
+            // { text: 'Domain Configuration', link: '/docs/configurations' },
           ]
         },
 
         {
-          text: 'Services',
+          text: 'Application Types',
           collapsed: false,
           items: [
-            { text: 'Types of Services', link: '/docs/services' },
+            { text: 'HTTP', link: '/docs/http' },
+            { text: 'HTTP/2', link: '/docs/http2' },
+            { text: 'TCP', link: '/docs/tcp' },
           ]
         },
         {

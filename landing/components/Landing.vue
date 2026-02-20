@@ -8,8 +8,8 @@ import Button from 'primevue/button'
     <div id="hero">
       <span class="tagline">TunnelBox is a Hardware Gateway To Expose Your Local Servers & AI Models Publicly </span>
       <span class="sub-tagline">
-        A dedicated hardware gateway that bridges your private network to the public internet
-        making it effortless to expose development servers, staging environments, and AI inference endpoints securely.
+        A dedicated hardware gateway that connects your local application to the public internet with all the hard stuff 
+        taken care of in one box.
       </span>
       <div class="hero-actions">
        <a
@@ -22,12 +22,10 @@ import Button from 'primevue/button'
       </div>
 
       <img
-      src="/Front View.png"
+      src="/box.png"
       alt="Hero"
       class="rounded-xl shadow-xl mx-auto"
       />
-
-      <span class="disclaimer">Images include AI-generated renders derived from real 3D mockups*</span>
     </div>
 
   </section>
@@ -36,12 +34,26 @@ import Button from 'primevue/button'
   <section id="other">
     <section class="other-section">
       <div class="card">
+        <span class="subsection-title">Expose Local Servers</span>
+        <p class="subtitle">
+          Put Your Local App on A Public URL
+        </p>
+        <div class="diagram">
+          <img
+          src="/diagram.png"  
+          alt="diagram"
+          class=""
+          />
+        </div>
+
+      </div>
+      <div class="card">
         <span class="subsection-title">Why a hardware solution?</span>
         <p class="subtitle">
           Developers should focus on what they love: building.
-          A hardware ingress removes the complexity of network configurations
-          like NAT and firewall rules, while providing an additional security
-          layer before traffic reaches your application.
+          A hardware ingress puts everything you need into one box. So, no need
+          for complex network configurations or other headaches to get your local 
+          applications to the public.
         </p>
       </div>
 
@@ -64,12 +76,12 @@ import Button from 'primevue/button'
               tunneling, securely and reliably.
             </p>
             <p>
-              Unlike CLI tools or VPNs, Tunnelbox doesn’t depend on your
-              laptop staying awake, logged in, or correctly configured.
+              Expose your local services to the public, reliably and without network
+              config.
             </p>
-            <ul>
-              <li>Outbound-only connections</li>
-            </ul>
+            <p>
+              
+            </p>
           </div>
       </div>
     </div>
@@ -91,12 +103,25 @@ import Button from 'primevue/button'
       <div class="features-grid">
         <div class="features-card">
           <img
+          src="/developer.png"
+          width="70"
+          />
+          <span class="card-header">Plug & Play</span>
+          <p class="card-body">
+            Plug it into power and your router, complete a quick setup, 
+            and you’re live. No network configurations. Get your services
+            up and running for the public to see.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
           src="/globe.png"
           width="70"
           />
-          <span class="card-header">Zero Network Configuration</span>
+          <span class="card-header">Zero Touch Setup</span>
           <p class="card-body">
-            Tunnelbox works anywhere by creating outbound-only secure tunnels.
+            No need to touch your router. Once the Box is plugged in 
+            and setup, your local application is exposed to the public.
           </p>
         </div>
 
@@ -114,26 +139,14 @@ import Button from 'primevue/button'
 
         <div class="features-card">
           <img
-          src="/domains.png"
-          width="70"
-          />
-          <span class="card-header">Free Managed Domains</span>
-          <p class="card-body">
-            Create multiple public domains per device.
-            <!-- Route each domain to a different local service or port. -->
-          </p>
-        </div>
-
-        <div class="features-card">
-          <img
           src="/developer.png"
           width="70"
           />
           <span class="card-header">Built for Developers</span>
           <p class="card-body">
             Designed for developers shipping fast. 
-            Expose localhost for webhooks, share live demos,
-             deploy staging environments, or publish AI inference endpoints in seconds.
+            Expose localhost for webhooks and APIs, share live demos,
+            deploy staging environments, or publish AI inference endpoints in seconds.
           </p>
         </div>
         <div class="features-card">
@@ -141,25 +154,12 @@ import Button from 'primevue/button'
           src="/developer.png"
           width="70"
           />
-          <span class="card-header">One Box To Connect Multiple Services</span>
+          <span class="card-header">One Box To Connect Multiple Machines</span>
           <p class="card-body">
-            Expose multiple local services from a single device. 
+            Expose multiple local services from a single TunnelBox. 
             Route traffic to different ports, containers, or services without additional hardware
           </p>
         </div>
-
-        <div class="features-card">
-          <img
-          src="/developer.png"
-          width="70"
-          />
-          <span class="card-header">Plug & Play</span>
-          <p class="card-body">
-            Plug it into power and your router, complete a quick setup, 
-            and you’re live. No additional configurations.
-          </p>
-        </div>
-
         <div class="features-card">
           <img
           src="/developer.png"
@@ -167,7 +167,7 @@ import Button from 'primevue/button'
           />
           <span class="card-header">Regular Updates</span>
           <p class="card-body">
-            A Security patches, firmware upgrades, and new features are delivered
+            Security patches, firmware upgrades, and new features are delivered
             keeping your gateway secure and optimized.
           </p>
         </div>
@@ -180,6 +180,17 @@ import Button from 'primevue/button'
           <p class="card-body">
               Every device includes one year of TunnelBox service — 
               including managed domains, SSL, and updates.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/domains.png"
+          width="70"
+          />
+          <span class="card-header">Free Managed Domains</span>
+          <p class="card-body">
+            Depending on your subscription, create multiple public domains per port.
+            <!-- Route each domain to a different local service or port. -->
           </p>
         </div>
         <div class="features-card">
@@ -604,7 +615,7 @@ import Button from 'primevue/button'
       #24182C
     );
 
-  padding: 2rem;
+  padding: 6rem;
   margin: 36px;
   border-radius: 16px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
@@ -879,6 +890,18 @@ import Button from 'primevue/button'
   transform: translateY(0);
   filter: brightness(0.98);
 }
+
+.diagram {
+  display: flex;
+  justify-content: center; /* horizontal */
+  align-items: center;     /* vertical */
+}
+
+.diagram img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 /* ===== Device image (lower-left anchored) ===== */
 .hero-device{
