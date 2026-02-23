@@ -1,33 +1,50 @@
 # What Is TunnelBox?
 
-TunnelBox is a hardware tunneling solution to quickly and safely expose you applications to the world.
+TunnelBox is a hardware tunneling gateway that helps you expose local services to the public internet.
+It is designed to reduce networking complexity while keeping security and reliability in focus.
 
 ## Why TunnelBox?
 
-Contemporary solutions such as cloudflare or nrok require extensive network and software configurations. Tunnelbox was created
-to simplify the procedure of exposing your applicaiton to the internet. Without complex configuration, developers can now develop with quick iterations,
-test webhooks, versions, etc. without worrying about the complicated stuff.
+Many tunneling workflows require manual setup, CLI tooling, and network troubleshooting.
+TunnelBox is built to simplify that process:
 
-## Who is TunnelBox For?
+- Minimal setup steps
+- Managed domain and TLS workflows
+- A dashboard-driven experience
 
-TunnelBox was designed to be simple for beginners but robust for production level services.
+## Who Is TunnelBox For?
 
-## Features & Specification?
+TunnelBox is useful for:
 
-### Features
-| Feature        | Description                          | Status |
-|----------------|--------------------------------------|--------|
-| Local Tunnel   | Expose services behind NAT           | ✅     |
-| TLS Support    | Automatic certificate handling       | ✅     |
-| Dashboard      | Monitor traffic & device status      | 🚧     |
+- Beginners learning how public endpoints work
+- Developers testing webhooks and API integrations
+- Teams running internal tools or demos
+- Startups exposing staging services quickly
+- Exposing your AI models to the public internet
 
-### Specifications
-| Category | Details |
-|---------|---------|
-| CPU     | Quad-core ARM Cortex-A76 |
-| RAM     | 2–4 GB LPDDR4 |
-| Storage | 32 GB SSD |
-| Network | Gigabit Ethernet |
-| Ports  | 2× USB-A, 1× HDMI 2.0 |
-| Power  | USB-C |
+## Core Concepts
 
+- `Device`: Your physical TunnelBox hardware.
+- `Domain`: Public hostname mapped to your service.
+- `Route`: Rule that forwards traffic from a domain/path to a local port.
+- `Protocol`: The service type (HTTP, HTTP/2, TCP).
+
+## Typical Setup Flow
+
+1. Connect and activate your TunnelBox device.
+2. Register one or more domains.
+3. Add routes from domain traffic to local services.
+4. Verify reachability from outside your local network.
+
+## Supported Protocols
+
+- [HTTP](/docs/http)
+- [HTTP/2](/docs/http2)
+- [TCP](/docs/tcp)
+
+## What to Read Next
+
+1. [Registering a TunnelBox](/docs/tunnelbox)
+2. [Registering Domains](/docs/domain)
+3. [Routing Traffic](/docs/routing)
+4. [Troubleshooting](/docs/troubleshooting)

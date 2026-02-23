@@ -1,16 +1,34 @@
 # Registering Domains
 
-If you have not created an account, go to https://console.tunnelbox.net and create an account.
+Domains let users reach your local services through public URLs.
 
-## Step 1 
+If you do not have an account yet, sign up at [console.tunnelbox.net](https://console.tunnelbox.net).
 
-Navigate to the Domain tab on the left side of the screen.
+## Step 1: Open the Domains Page
 
-## Step 2
+1. Sign in to the TunnelBox console.
+2. Click the `Domains` tab in the left navigation.
 
-Select "Register Domain" at the top right of your screen.
+## Step 2: Register a Domain
 
-## Step 3
-From there register the Domain, following the prompts.
+1. Click `Register Domain`.
+2. Enter the requested domain details.
+3. Confirm and save.
 
+## Step 3: Confirm Domain Status
+
+After registration, verify the domain appears with a healthy status.
+If there is a pending status, wait briefly and refresh.
+
+## Domain Naming Tips
+
+- Use clear names tied to service purpose.
+- Keep staging and production domains separate.
+- Avoid reusing one domain for unrelated services.
+
+## What Comes Next
+
+After domain registration, configure where traffic should go:
+
+- [Routing Traffic](/docs/routing)
 

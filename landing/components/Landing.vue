@@ -21,11 +21,6 @@ import Button from 'primevue/button'
         <!-- <a class="btn" href="/">Learn More</a> -->
       </div>
 
-      <img
-      src="/box.png"
-      alt="Hero"
-      class="rounded-xl shadow-xl mx-auto"
-      />
     </div>
 
   </section>
@@ -317,6 +312,16 @@ import Button from 'primevue/button'
 </template>
 
 <style scoped>
+section,
+.card,
+.features-card,
+.pricing-card,
+.plan-pill,
+.cta-pill,
+.btn {
+  font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+}
+
 #hero {
   display: flex;
   flex-direction: column;
@@ -402,8 +407,14 @@ import Button from 'primevue/button'
 }
 
 .hardware-reason h1 {
-  font-size: 30px;
-  font-weight: 650;
+  font-size: clamp(1.55rem, 2.9vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hardware-reason p {
+  font-size: clamp(1rem, 1.5vw, 1.14rem);
+  line-height: 1.65;
 }
 
 
@@ -500,8 +511,9 @@ import Button from 'primevue/button'
   border: 2px;  
   /* background: whitesmoke; */
   padding: 7px 24px;
-  font-weight: 450;
-  font-size: 18.9px;
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+  line-height: 1.25;
   border-radius: 17.34px;
   background: #FFFFFF33;
 }
@@ -512,21 +524,21 @@ import Button from 'primevue/button'
 }
 
 .tagline {
-  font-size: 60px;
-  font-weight: 650;
+  font-size: clamp(2.05rem, 5.8vw, 4.15rem);
+  font-weight: 700;
   text-align: center;
-  letter-spacing: -1px;
-  line-height: 1.08;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
   max-width: 800px;     /* slightly narrower improves wrapping */
   margin: 0 auto;
 }
 
 
 .sub-tagline {
-  font-size: 28px;
-  font-weight: 450;
+  font-size: clamp(1.05rem, 2.35vw, 1.75rem);
+  font-weight: 500;
   text-align: center;
-  line-height: 1.3;
+  line-height: 1.45;
   max-width: 1042px;
 }
 
@@ -540,25 +552,28 @@ import Button from 'primevue/button'
 .subsection-title {
   text-align: center;
   /* padding: 3rem 1rem 1.5rem; */
-  font-size: 53.39px;
-  font-weight: 656;
+  font-size: clamp(1.7rem, 4.3vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
   
 }
 
 .subsection-title span {
-  font-size: 50px;
-  font-weight: 800;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .subtitle {
-  font-size: 18px;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
   margin: 1rem 0 0 0;
   text-align: center;
+  line-height: 1.6;
 }
 
 .subtitle-left {
-  font-size: 18px;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
   margin: 1rem 0 0 0;
+  line-height: 1.6;
 }
 
 .features-container,
@@ -664,13 +679,25 @@ import Button from 'primevue/button'
 
 
 .card-header {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: clamp(1.18rem, 2.1vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .card-body {
-  font-size: 15px;
+  font-size: clamp(0.97rem, 1.2vw, 1.06rem);
   margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.hobbyist span,
+.team span,
+.pro span {
+  font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  font-size: clamp(1.3rem, 2.7vw, 2rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
 .hardware-grid {
@@ -927,6 +954,10 @@ import Button from 'primevue/button'
 }
 /* ====== Responsiveness ====== */
 @media (max-width: 900px) {
+  .other-section {
+    padding: 0 1rem;
+  }
+
   .plans {
     grid-template-columns: 1fr;
   }
