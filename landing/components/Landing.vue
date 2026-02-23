@@ -23,7 +23,6 @@ import Button from 'primevue/button'
       <img
       src="/box.png"
       alt="Hero"
-      class="rounded-xl shadow-xl mx-auto"
       />
     </div>
 
