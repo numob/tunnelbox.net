@@ -20,7 +20,11 @@ import Button from 'primevue/button'
         >View On Kickstarter</a>
         <!-- <a class="btn" href="/">Learn More</a> -->
       </div>
-
+      <img
+      src="/box.png"
+      alt="Hero"
+      class="rounded-xl shadow-xl mx-auto"
+      />
     </div>
 
   </section>
