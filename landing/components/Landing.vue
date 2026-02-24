@@ -6,23 +6,26 @@ import Button from 'primevue/button'
   <!-- Hero -->
   <section class="hero-section">
     <div id="hero">
-      <span class="tagline">TunnelBox is a Hardware Gateway To Expose Your Local Servers & AI Models Publicly </span>
-      <span class="sub-tagline">
-        A dedicated hardware gateway that connects your local application to the public internet with all the hard stuff 
-        taken care of in one box.
-      </span>
-      <div class="hero-actions">
-       <a
-          class="btn"
-          href="https://www.kickstarter.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >View On Kickstarter</a>
-        <!-- <a class="btn" href="/">Learn More</a> -->
+      <div class="hero-content">
+        <span class="tagline">TunnelBox is a Hardware Gateway To Expose Your Local Servers & AI Models Publicly </span>
+        <span class="sub-tagline">
+          A dedicated hardware gateway that connects your local application to the public internet with all the hard stuff
+          taken care of in one box.
+        </span>
+        <div class="hero-actions">
+          <a
+            class="btn"
+            href="https://www.kickstarter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >View On Kickstarter</a>
+          <!-- <a class="btn" href="/">Learn More</a> -->
+        </div>
       </div>
       <img
-      src="/box.png"
-      alt="Hero"
+        src="/box.png"
+        alt="Hero"
+        class="hero-image"
       />
     </div>
 
@@ -36,12 +39,44 @@ import Button from 'primevue/button'
         <p class="subtitle">
           Put Your Local App on A Public URL
         </p>
-        <div class="diagram">
-          <img
-          src="/diagram.png"  
-          alt="diagram"
-          class=""
-          />
+        <div
+          class="diagram"
+          role="img"
+          aria-label="AI local model, webhooks, and localhost traffic are routed through TunnelBox and tunnel servers to a public URL"
+        >
+          <div class="diagram-local-panel">
+            <div class="diagram-local-title">Localhost</div>
+            <div class="diagram-local-stack">
+              <div class="diagram-node diagram-node-with-icon">
+                <span class="diagram-node-icon" aria-hidden="true">🤖</span>
+                <span>AI Local Model</span>
+              </div>
+              <div class="diagram-node diagram-node-with-icon">
+                <span class="diagram-node-icon" aria-hidden="true">🔗</span>
+                <span>Services</span>
+              </div>
+              <div class="diagram-node diagram-node-with-icon">
+                <span class="diagram-node-icon" aria-hidden="true">💻</span>
+                <span>Local App</span>
+              </div>
+            </div>
+          </div>
+          <div class="diagram-curves" aria-hidden="true">
+            <svg class="curve-layer" viewBox="0 0 260 220" preserveAspectRatio="none">
+              <path class="curve-line" d="M 8 36 H 102 Q 130 36 130 64 V 110 H 252" />
+              <path class="curve-line" d="M 8 110 H 252" />
+              <path class="curve-line" d="M 8 184 H 102 Q 130 184 130 156 V 110 H 252" />
+            </svg>
+          </div>
+
+          <div class="diagram-node diagram-node-core">TunnelBox</div>
+          <div class="diagram-line" aria-hidden="true"></div>
+          <div class="diagram-node diagram-node-core">Tunnel Servers</div>
+          <div class="diagram-line" aria-hidden="true"></div>
+          <div class="diagram-node diagram-node-with-icon">
+            <span class="diagram-node-icon" aria-hidden="true">🌐</span>
+            <span>Public URL</span>
+          </div>
         </div>
 
       </div>
@@ -326,12 +361,28 @@ section,
 }
 
 #hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.hero-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.5rem;
-  width: 100%;
-  padding: 4rem 1rem;
+}
+
+.hero-image {
+  width: min(100%, 520px);
+  height: auto;
+  justify-self: end;
 
 }
 
@@ -529,27 +580,27 @@ section,
 .tagline {
   font-size: clamp(2.05rem, 5.8vw, 4.15rem);
   font-weight: 700;
-  text-align: center;
+  text-align: left;
   letter-spacing: -0.02em;
   line-height: 1.1;
   max-width: 800px;     /* slightly narrower improves wrapping */
-  margin: 0 auto;
+  margin: 0;
 }
 
 
 .sub-tagline {
   font-size: clamp(1.05rem, 2.35vw, 1.75rem);
   font-weight: 500;
-  text-align: center;
+  text-align: left;
   line-height: 1.45;
-  max-width: 1042px;
+  max-width: 820px;
 }
 
 .hero-actions {
   display: flex;
   gap: 1rem;
   margin-top: 0.5rem;
-  margin-bottom: 6rem;
+  margin-bottom: 0;
 }
 
 .subsection-title {
@@ -922,14 +973,163 @@ section,
 }
 
 .diagram {
-  display: flex;
-  justify-content: center; /* horizontal */
-  align-items: center;     /* vertical */
+  display: grid;
+  grid-template-columns: minmax(280px, 1.35fr) clamp(130px, 18vw, 230px) minmax(170px, 1fr) clamp(55px, 8vw, 110px) minmax(170px, 1fr) clamp(55px, 8vw, 110px) minmax(170px, 1fr);
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 940px);
+  margin: 0 auto;
+  padding: clamp(0.5rem, 2vw, 1rem) 0;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
 }
 
-.diagram img {
-  max-width: 100%;
-  height: auto;
+.diagram-node {
+  display: inline-flex;
+  justify-content: center;
+  gap: 4px;
+  align-items: center;
+  min-height: clamp(70px, 7vw, 74px);
+  min-width: 170px;
+  padding: 1rem 1.15rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  text-align: center;
+  font-size: clamp(0.88rem, 1.25vw, 1rem);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.diagram-node-with-icon {
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.diagram-node-icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.diagram-node-core {
+  border-color: rgba(187, 88, 255, 0.55);
+  background: linear-gradient(180deg, rgba(187, 88, 255, 0.24) 0%, rgba(54, 188, 255, 0.2) 100%);
+}
+
+.diagram-local-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.diagram-local-panel {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 280px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.diagram-local-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.diagram-local-stack .diagram-node {
+  min-height: 52px;
+  min-width: 0;
+  padding: 0.75rem 0.95rem;
+  font-size: clamp(0.8rem, 1.05vw, 0.92rem);
+}
+
+.diagram-curves {
+  height: 220px;
+  align-self: center;
+}
+
+.curve-layer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.curve-line {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.9);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 11;
+  animation: curve-flow 0.95s linear infinite;
+}
+
+.diagram-line {
+  height: 3px;
+  border-radius: 999px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.85) 1.4px, transparent 1.6px);
+  background-size: 12px 3px;
+  background-repeat: repeat-x;
+  animation: flow-dots 0.95s linear infinite;
+}
+
+@keyframes flow-dots {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: 12px;
+  }
+}
+
+@keyframes curve-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+@media (max-width: 760px) {
+  .diagram {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .diagram-curves {
+    display: none;
+  }
+
+  .diagram-line {
+    width: 3px;
+    height: 36px;
+    margin: 0 auto;
+    background-repeat: repeat-y;
+    background-size: 3px 12px;
+    animation: flow-dots-vertical 0.95s linear infinite;
+  }
+}
+
+@keyframes flow-dots-vertical {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: 12px;
+  }
 }
 
 
@@ -957,6 +1157,25 @@ section,
 }
 /* ====== Responsiveness ====== */
 @media (max-width: 900px) {
+  #hero {
+    grid-template-columns: 1fr;
+    padding: 3rem 1rem;
+  }
+
+  .hero-content {
+    align-items: center;
+  }
+
+  .hero-image {
+    justify-self: center;
+    width: min(100%, 420px);
+  }
+
+  .tagline,
+  .sub-tagline {
+    text-align: center;
+  }
+
   .other-section {
     padding: 0 1rem;
   }
