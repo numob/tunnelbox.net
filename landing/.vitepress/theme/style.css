@@ -1,3 +1,6 @@
+@config "../tailwind.config.js";
+@import "tailwindcss";
+
 /**
  * Customize default theme styling by overriding CSS variables:
  * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
@@ -157,7 +160,7 @@ html {
 
 
 .VPContent {
-  background: #1C1222
+  background: #1C1222;
   /* linear-gradient(to bottom, #000000, #653D81); */
 }
 
@@ -206,9 +209,4 @@ html {
 .VPFooter a:hover {
   color: white;
 }
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 

@@ -830,8 +830,10 @@ a:hover img {
 }
 
 .getting-step-num {
-  width: fit-content;
+  width: 35px;
+  height: 35px;
   padding: 0.28rem 0.55rem;
+  text-align: center;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.06);
