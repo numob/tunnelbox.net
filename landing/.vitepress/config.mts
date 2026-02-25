@@ -86,7 +86,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'test',
+      message: 'TunnelBox © ' + new Date().getFullYear() + ' Irvinesoft',
       copyright: '© ' + new Date().getFullYear() + ' Irvinesoft'
     },
 
@@ -95,6 +95,11 @@ export default defineConfig({
     },
     
   },
+  vite: {
+    server: {
+      allowedHosts: true
+    }
+  }
 
   
 })

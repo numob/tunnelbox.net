@@ -1,5 +1,126 @@
 <script setup>
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { withBase } from 'vitepress'
 import Button from 'primevue/button'
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
+const hardwareViewer = ref(null)
+const modelLoading = ref(true)
+const modelError = ref(false)
+
+let renderer
+let scene
+let camera
+let clock
+let modelRig
+let frameId
+let resizeObserver
+let disposed = false
+let revealStart = 0
+
+const setupViewer = () => {
+  const mountEl = hardwareViewer.value
+  if (!mountEl) return
+
+  scene = new THREE.Scene()
+
+  camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100)
+  camera.position.set(0, 0.15, 4)
+
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+  renderer.outputColorSpace = THREE.SRGBColorSpace
+  mountEl.appendChild(renderer.domElement)
+
+  clock = new THREE.Clock()
+  modelRig = new THREE.Group()
+  modelRig.scale.set(1, 0.02, 1)
+  scene.add(modelRig)
+
+  const key = new THREE.DirectionalLight(0xffffff, 1.35)
+  key.position.set(3, 4, 4)
+  const fill = new THREE.DirectionalLight(0xa9b9ff, 0.7)
+  fill.position.set(-3, 1, 2)
+  const hemi = new THREE.HemisphereLight(0xe5e8ff, 0x1a1424, 0.65)
+  scene.add(key, fill, hemi)
+
+  const loader = new GLTFLoader()
+  loader.load(withBase('/TunnelBox_GLTF.gltf'), (gltf) => {
+    const model = gltf.scene
+    const box = new THREE.Box3().setFromObject(model)
+    const size = box.getSize(new THREE.Vector3())
+    const center = box.getCenter(new THREE.Vector3())
+    const maxDim = Math.max(size.x, size.y, size.z) || 1
+    const fit = 1.7 / maxDim
+
+    model.scale.setScalar(fit)
+    model.position.sub(center.multiplyScalar(fit))
+    modelRig.add(model)
+    const framed = new THREE.Box3().setFromObject(modelRig)
+    const sphere = framed.getBoundingSphere(new THREE.Sphere())
+    const dist = Math.max(2.8, sphere.radius * 2.6)
+    camera.position.set(0, sphere.center.y + sphere.radius * 0.15, dist)
+    camera.lookAt(sphere.center)
+    camera.near = 0.01
+    camera.far = Math.max(50, dist * 8)
+    camera.updateProjectionMatrix()
+    revealStart = clock.getElapsedTime()
+    modelLoading.value = false
+  }, undefined, () => {
+    modelLoading.value = false
+    modelError.value = true
+  })
+
+  const updateSize = () => {
+    if (!mountEl || !renderer || !camera) return
+    const width = mountEl.clientWidth || 640
+    const height = mountEl.clientHeight || 360
+    camera.aspect = width / height
+    camera.updateProjectionMatrix()
+    renderer.setSize(width, height, false)
+  }
+
+  resizeObserver = new ResizeObserver(updateSize)
+  resizeObserver.observe(mountEl)
+  updateSize()
+
+  const animate = () => {
+    if (disposed) return
+    const t = clock.getElapsedTime()
+    if (modelRig) {
+      const reveal = Math.min(1, (t - revealStart) / 1.2)
+      const eased = 1 - Math.pow(1 - reveal, 3)
+      modelRig.scale.y = 0.02 + (1 - 0.02) * eased
+      modelRig.rotation.y = 0.22 * Math.sin(t * 0.6)
+    }
+    renderer.render(scene, camera)
+    frameId = requestAnimationFrame(animate)
+  }
+  animate()
+}
+
+onMounted(() => {
+  modelLoading.value = true
+  modelError.value = false
+  // setupViewer()
+})
+
+// onBeforeUnmount(() => {
+//   disposed = true
+//   if (frameId) cancelAnimationFrame(frameId)
+//   if (resizeObserver) resizeObserver.disconnect()
+//   if (renderer) {
+//     renderer.dispose()
+//     renderer.forceContextLoss()
+//     if (renderer.domElement?.parentNode) {
+//       renderer.domElement.parentNode.removeChild(renderer.domElement)
+//     }
+//   }
+//   scene = undefined
+//   camera = undefined
+//   renderer = undefined
+// })
 </script>
 
 <template>
@@ -33,7 +154,7 @@ import Button from 'primevue/button'
   
 
   <section id="other">
-    <section class="other-section">
+    <section class="other-section core-flow-section">
       <div class="card">
         <span class="subsection-title">Expose Local Servers</span>
         <p class="subtitle">
@@ -63,15 +184,23 @@ import Button from 'primevue/button'
           </div>
           <div class="diagram-curves" aria-hidden="true">
             <svg class="curve-layer" viewBox="0 0 260 220" preserveAspectRatio="none">
-              <path class="curve-line" d="M 8 36 H 102 Q 130 36 130 64 V 110 H 252" />
-              <path class="curve-line" d="M 8 110 H 252" />
-              <path class="curve-line" d="M 8 184 H 102 Q 130 184 130 156 V 110 H 252" />
+              <path class="curve-line" d="M 8 36 H 102 Q 130 36 130 64 V 110" />
+              <path class="curve-line" d="M 8 110 H 270" />
+              <path class="curve-line" d="M 8 184 H 102 Q 130 184 130 156 V 110" />
             </svg>
           </div>
 
-          <div class="diagram-node diagram-node-core">TunnelBox</div>
-          <div class="diagram-line" aria-hidden="true"></div>
-          <div class="diagram-node diagram-node-core">Tunnel Servers</div>
+          <div class="diagram-core-panel">
+            <div class="diagram-core-title">Tunnel Stack</div>
+            <div class="diagram-core-stack">
+              <div class="diagram-node diagram-node-core">TunnelBox</div>
+              <!-- <div class="diagram-core-bridge" aria-hidden="true">
+                <div class="diagram-line diagram-line-vertical"></div>
+                <div class="diagram-line diagram-line-vertical"></div>
+              </div> -->
+              <div class="diagram-node diagram-node-core">Servers</div>
+            </div>
+          </div>
           <div class="diagram-line" aria-hidden="true"></div>
           <div class="diagram-node diagram-node-with-icon">
             <span class="diagram-node-icon" aria-hidden="true">🌐</span>
@@ -80,48 +209,56 @@ import Button from 'primevue/button'
         </div>
 
       </div>
-      <div class="card">
-        <span class="subsection-title">Why a hardware solution?</span>
-        <p class="subtitle">
-          Developers should focus on what they love: building.
-          A hardware ingress puts everything you need into one box. So, no need
-          for complex network configurations or other headaches to get your local 
-          applications to the public.
-        </p>
-      </div>
-
-      <div class="card">
+      <div class="card hardware-solution-card">
+        <div class="hardware-solution-intro">
+          <span class="subsection-title">Why a hardware solution?</span>
+          <p class="subtitle">
+            Developers should focus on what they love: building.
+            A hardware ingress puts everything you need into one box. So, no need
+            for complex network configurations or other headaches to get your local
+            applications to the public.
+          </p>
+        </div>
         <div class="hardware-grid">
-          <div class="hardware-media">
-            <div class="image-placeholder">
-              
+          <!-- <div class="hardware-media"> -->
+            <!-- <div class="image-placeholder"> -->
+              <!-- <div
+                ref="hardwareViewer"
+                class="three-viewer"
+                aria-label="3D preview of TunnelBox hardware"
+              ></div>
+              <div v-if="modelLoading && !modelError" class="viewer-status">Loading 3D model...</div>
+              <div v-if="modelError" class="viewer-status viewer-status-error">Failed to load model</div> -->
               <img
-                src="/box.png"
-                alt="Product Showcase"
-                class="rounded-xl shadow-xl mx-auto"
+              src="/box.png"
               />
-            </div>
-          </div>
+            <!-- </div> -->
+          <!-- </div> -->
           <div class="hardware-reason">
-            <h1>Made To Be Secure, Used Reliably</h1>
-            <p>
-              Tunnelbox is a single-purpose device designed to handle
-              tunneling, securely and reliably.
-            </p>
-            <p>
-              Expose your local services to the public, reliably and without network
-              config.
-            </p>
-            <p>
-              
-            </p>
+            <ul class="hardware-points">
+              <li>
+                Handles port forwarding automatically, so you don’t touch router rules.
+              </li>
+              <li>
+                Keeps local development private by default, exposing only what you choose.
+              </li>
+              <li>
+                Centralizes routing for multiple devices in one place.
+              </li>
+              <li>
+                Makes webhook testing reliable without tunneling setup every session.
+              </li>
+              <li>
+                Lowers misconfiguration risk compared to manual network setup.
+              </li>
+            </ul>
           </div>
       </div>
     </div>
   </section>
   <!-- Value Prop -->
-   <section class="other-section" style="gap: 4rem;">
-    <div style="padding: 2rem;">
+   <section class="other-section features-section">
+    <div class="features-intro">
       <div class="subsection-title">
         <span>The features that make tunneling simplier</span>
       </div>
@@ -255,19 +392,43 @@ import Button from 'primevue/button'
         <span>Who is Tunnelbox for?</span>
       </div>
 
-      <div class="features-container">
-        <div class="hobbyist">
-          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Hobbyists & Students</span>
+      <div class="who-grid">
+        <div class="hobbyist audience-card">
+          <span>Hobbyists & Students</span>
         </div>
-        <div class="team">
-          <span style="display: flex; justify-content: center; align-items: center;  font-size: 40px; font-weight: 650;">Developers</span>
+        <div class="team audience-card">
+          <span>Developers</span>
         </div>
-        <div class="pro">
-          <span style="display: flex; justify-content: center; align-items: center; font-size: 40px; font-weight: 650;">Teams & Startups</span>
+        <div class="pro audience-card">
+          <span>Teams & Startups</span>
         </div>
       </div>
 
     
+  </section>
+
+  <section class="other-section getting-started-section" aria-labelledby="getting-started-title">
+    <div class="getting-started-intro">
+      <h2 id="getting-started-title" class="subsection-title">Getting Started</h2>
+      <p class="subtitle">Three stages to getting started.</p>
+    </div>
+
+    <div class="getting-steps" role="list">
+      <article class="getting-step" role="listitem">
+        <div class="getting-step-num">01</div>
+        <h3 class="getting-step-title">Plug in power</h3>
+      </article>
+
+      <article class="getting-step" role="listitem">
+        <div class="getting-step-num">02</div>
+        <h3 class="getting-step-title">Connect ethernet</h3>
+      </article>
+
+      <article class="getting-step" role="listitem">
+        <div class="getting-step-num">03</div>
+        <h3 class="getting-step-title">Complete setup</h3>
+      </article>
+    </div>
   </section>
   
   <!-- Use Cases -->
@@ -443,21 +604,28 @@ section,
 
 
 .other-section{
-  padding: 0 150px;
+  width: min(1240px, 100%);
+  margin-inline: auto;
+  padding: 0 clamp(1rem, 4vw, 3.5rem);
+}
+
+.core-flow-section {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.4rem);
+}
+
+.core-flow-section > .card:first-child .subtitle {
+  margin-top: 0.4rem;
 }
 
 .hardware-reason {
   display: flex;
   flex-direction: column;
-
-  /* make the content fill the card */
-  height: 100%;
-
-  /* center content vertically and horizontally */
-  justify-content: center; /* vertical centering */
-
-  font-weight: 450;
-  gap: 2rem;
+  justify-content: center;
+  font-weight: 500;
+  gap: 1.1rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+  padding-left: clamp(1rem, 2.4vw, 2rem);
 }
 
 .hardware-reason h1 {
@@ -467,8 +635,45 @@ section,
 }
 
 .hardware-reason p {
-  font-size: clamp(1rem, 1.5vw, 1.14rem);
-  line-height: 1.65;
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hardware-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.hardware-points li {
+  position: relative;
+  margin: 0;
+  padding: 0.3rem 0 0.3rem 2.2rem;
+  line-height: 1.55;
+  font-size: clamp(0.94rem, 1.08vw, 1rem);
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.hardware-points li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.72rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 
@@ -496,19 +701,117 @@ section,
 .tunnelbox-who {
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* vertical centering */
-  align-items: center;       /* horizontal centering */
+  align-items: center;
+  text-align: center;
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+  width: 100%;
+  padding: clamp(2rem, 4vw, 3rem);
+  border-radius: 24px;
+  border: 1px solid rgba(187, 88, 255, 0.2);
+  background:
+    radial-gradient(80% 100% at 0% 100%, rgba(54, 188, 255, 0.14), rgba(54, 188, 255, 0) 65%),
+    radial-gradient(90% 95% at 100% 0%, rgba(187, 88, 255, 0.2), rgba(187, 88, 255, 0) 60%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.97), rgba(20, 14, 30, 0.98));
+  box-shadow:
+    0 22px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
 
-  text-align: center;        /* center text inside children */
+.who-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.2rem);
+}
 
-  min-height: 50rem;
-  padding: 20px;
-  width: 100vw;
+.audience-card {
+  position: relative;
+  min-height: clamp(220px, 24vw, 280px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: clamp(1rem, 2.4vw, 1.35rem);
+  border-radius: 20px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 14px 26px rgba(0, 0, 0, 0.3);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
 
-  background-image: url('/who_tunnelbox.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+.audience-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(12, 8, 18, 0.08) 20%, rgba(12, 8, 18, 0.84) 100%);
+  z-index: -1;
+}
+
+.audience-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(54, 188, 255, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 18px 30px rgba(0, 0, 0, 0.34);
+}
+
+.getting-started-section {
+  gap: clamp(1.2rem, 3vw, 2rem);
+  margin-top: clamp(1rem, 3vw, 2rem);
+}
+
+.getting-started-intro .subsection-title,
+.getting-started-intro .subtitle {
+  text-align: left;
+  margin: 0;
+}
+
+.getting-started-intro .subtitle {
+  margin-top: 0.6rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.getting-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.2rem);
+}
+
+.getting-step {
+  display: grid;
+  gap: 0.85rem;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(90% 95% at 100% 0%, rgba(187, 88, 255, 0.2) 0%, rgba(187, 88, 255, 0) 62%),
+    radial-gradient(80% 110% at 0% 100%, rgba(54, 188, 255, 0.14) 0%, rgba(54, 188, 255, 0) 70%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.96), rgba(20, 14, 30, 0.98));
+  box-shadow:
+    0 12px 24px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.getting-step-num {
+  width: fit-content;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.getting-step-title {
+  margin: 0;
+  font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .hardware-card {
@@ -645,128 +948,242 @@ section,
 .pricing-card{
   display: flex;
   flex-direction: column;
-  background: linear-gradient(0deg, #24182C, #24182C);
-
   gap: 1rem;
-  padding: 2rem;
-
+  padding: clamp(1.25rem, 2.5vw, 1.9rem);
   width: 100%;
   height: 100%;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  border: 3.67px solid #56346D
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(100% 110% at 0% 100%, rgba(54, 188, 255, 0.14) 0%, rgba(54, 188, 255, 0) 68%),
+    radial-gradient(90% 90% at 100% 0%, rgba(187, 88, 255, 0.2) 0%, rgba(187, 88, 255, 0) 60%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.96), rgba(28, 18, 34, 0.98));
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  /* width: 100%; */
+  /* gap: clamp(1.1rem, 2.2vw, 1.8rem); */
+  width: 100%;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  margin: 0;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   background:
-    /* left-bottom blue glow */
-    radial-gradient(
-      41.52% 107.46% at 0% 100%,
-      rgba(49, 64, 159, 0.2) 0%,
-      rgba(49, 64, 159, 0) 100%
-    ),
-
-    /* top-right purple glow */
-    radial-gradient(
-      83.71% 142.98% at 102.14% -21.72%,
-      rgba(187, 88, 255, 0.2) 0%,
-      rgba(187, 88, 255, 0) 100%
-    ),
-
-    /* base color */
-    linear-gradient(
-      0deg,
-      #24182C,
-      #24182C
-    );
-
-  padding: 6rem;
-  margin: 36px;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    radial-gradient(95% 120% at 0% 100%, rgba(54, 188, 255, 0.14) 0%, rgba(54, 188, 255, 0) 70%),
+    radial-gradient(90% 95% at 100% 0%, rgba(187, 88, 255, 0.16) 0%, rgba(187, 88, 255, 0) 62%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.95), rgba(28, 18, 34, 0.98));
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .features-card {
   display: flex;
   flex-direction: column;
-  /* gap: 2rem; */
+  position: relative;
+  gap: 0.9rem;
   width: 100%;
+  min-height: 100%;
+  padding: 1.35rem 1.2rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background:
-    /* left-bottom blue glow */
-    radial-gradient(
-      41.52% 107.46% at 0% 100%,
-      rgba(49, 64, 159, 0.2) 0%,
-      rgba(49, 64, 159, 0) 100%
-    ),
+    radial-gradient(95% 85% at 100% 0%, rgba(187, 88, 255, 0.16) 0%, rgba(187, 88, 255, 0) 65%),
+    radial-gradient(80% 120% at 0% 100%, rgba(54, 188, 255, 0.14) 0%, rgba(54, 188, 255, 0) 70%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.96), rgba(28, 18, 34, 0.98));
+  box-shadow:
+    0 14px 26px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
 
-    /* top-right purple glow */
-    radial-gradient(
-      83.71% 142.98% at 102.14% -21.72%,
-      rgba(187, 88, 255, 0.2) 0%,
-      rgba(187, 88, 255, 0) 100%
-    ),
+.features-card::before {
+  content: counter(feature-index, decimal-leading-zero);
+  position: absolute;
+  right: 0.85rem;
+  top: 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.55);
+}
 
-    /* base color */
-    linear-gradient(
-      0deg,
-      #24182C,
-      #24182C
-    );
-
-  padding: 2rem;
-  /* margin: 36px; */
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+.features-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(54, 188, 255, 0.45);
+  box-shadow:
+    0 18px 30px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(54, 188, 255, 0.2) inset;
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
+  counter-reset: feature-index;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
   width: 100%;
 }
 
-
-
-.card-header {
-  font-size: clamp(1.18rem, 2.1vw, 1.5rem);
-  font-weight: 700;
-  line-height: 1.3;
+.features-grid .features-card {
+  counter-increment: feature-index;
 }
 
-.card-body {
-  font-size: clamp(0.97rem, 1.2vw, 1.06rem);
-  margin-top: 0.5rem;
-  line-height: 1.6;
+.features-section {
+  gap: 2.5rem;
+}
+
+.features-section .card-header {
+  font-size: clamp(1.18rem, 2.1vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  max-width: 28ch;
+}
+
+.features-section .card-body {
+  font-size: clamp(0.95rem, 1.1vw, 1.02rem);
+  margin-top: 0.35rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.features-intro {
+  padding: clamp(1rem, 2.6vw, 2rem) clamp(0.5rem, 1.6vw, 1rem);
+}
+
+.features-card img {
+  width: 74px;
+  height: 74px;
+  object-fit: cover;
+  padding: 0;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .hobbyist span,
 .team span,
 .pro span {
   font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
-  font-size: clamp(1.3rem, 2.7vw, 2rem) !important;
+  display: inline-flex;
+  align-items: center;
+  text-align: left;
+  font-size: clamp(1.2rem, 2.25vw, 1.75rem) !important;
   font-weight: 700 !important;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   line-height: 1.2;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 .hardware-grid {
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.25rem, 3vw, 2.25rem);
+  grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.1fr);
+}
+
+.hardware-solution-card {
+  position: relative;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(2rem, 4vw, 3.25rem);
+  overflow: hidden;
+  border: 1px solid rgba(187, 88, 255, 0.24);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(80% 110% at 0% 100%, rgba(54, 188, 255, 0.13) 0%, rgba(54, 188, 255, 0) 62%),
+    radial-gradient(70% 95% at 100% 0%, rgba(187, 88, 255, 0.2) 0%, rgba(187, 88, 255, 0) 56%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.97), rgba(20, 14, 30, 0.98));
+}
+
+.hardware-solution-card::after {
+  content: "";
+  position: absolute;
+  right: -12%;
+  top: -34%;
+  width: min(420px, 38vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(54, 188, 255, 0.13), rgba(54, 188, 255, 0));
+  pointer-events: none;
+}
+
+.hardware-solution-intro .subsection-title,
+.hardware-solution-intro .subtitle {
+  text-align: left;
+}
+
+.hardware-solution-intro .subtitle {
+  max-width: 70ch;
+  margin-top: 0.75rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hardware-solution-intro .subsection-title {
+  margin: 0;
+  letter-spacing: -0.015em;
 }
 
 .image-placeholder {
-  /* height: 200px; */
-  /* background: #e5e5e5; */
+  width: 100%;
+  min-height: 520px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    radial-gradient(70% 90% at 50% 95%, rgba(54, 188, 255, 0.2), rgba(54, 188, 255, 0) 63%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.hardware-media img {
+  width: min(100%, 560px);
+  max-height: 390px;
+  height: auto;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.4));
+}
+
+.three-viewer {
+  width: min(100%, 560px);
+  height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background:
+    radial-gradient(70% 80% at 50% 90%, rgba(58, 168, 255, 0.16), rgba(58, 168, 255, 0) 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+}
+
+.three-viewer :deep(canvas) {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.viewer-status {
+  position: absolute;
+  inset: auto 0 1rem 0;
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(18, 13, 24, 0.7);
+  font-size: 0.85rem;
+}
+
+.viewer-status-error {
+  border-color: rgba(255, 110, 110, 0.5);
+  color: #ffb5b5;
 }
 
 .cta {
@@ -778,14 +1195,19 @@ section,
 
 /* ====== Wrapper ====== */
 .pricing-wrap {
-  /* width: min(1100px, 100%); */
+  width: min(1240px, 100%);
   margin-inline: auto;
-  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding: clamp(1.5rem, 3.2vw, 2.35rem);
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.06);
-  border: 3.67px solid #56346D;
-  border-radius: 30px;
+    0 20px 42px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  border: 1px solid rgba(187, 88, 255, 0.3);
+  border-radius: 24px;
+  background:
+    radial-gradient(90% 120% at 0% 100%, rgba(54, 188, 255, 0.12) 0%, rgba(54, 188, 255, 0) 72%),
+    radial-gradient(80% 95% at 100% 0%, rgba(187, 88, 255, 0.2) 0%, rgba(187, 88, 255, 0) 60%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.96), rgba(20, 14, 30, 0.98));
 }
 
 .pricing-title {
@@ -801,7 +1223,7 @@ section,
 .plans {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px; /* separators provide the “gap” visually */
+  gap: clamp(0.9rem, 2vw, 1.2rem);
   background: transparent;
   overflow: hidden; /* clip inner separators on small screens */
 }
@@ -818,7 +1240,7 @@ section,
   display: grid;
   align-content: start;
   gap: 0.9rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .plan-name {
@@ -832,7 +1254,7 @@ section,
   font-size: clamp(1.8rem, 4.6vw, 2.5rem);
   letter-spacing: 0.3px;
   display: flex;
-  padding: 1rem 0;
+  padding: 0.5rem 0 0.8rem;
   align-items: baseline;
   gap: 0.35rem;
 }
@@ -848,8 +1270,8 @@ section,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 4rem;
-  padding: 0.75rem 3rem;
+  min-height: 3.2rem;
+  padding: 0.68rem 1.3rem;
 
   border-radius: 999px;
   font-weight: 700;
@@ -858,9 +1280,6 @@ section,
   text-align: center;
 
   /* inner glass + color gradient */
-  border: 2px solid;
-
-  border-image-source: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
   background: linear-gradient(180deg, rgba(187, 88, 255, 0.4) 0%, rgba(54, 188, 255, 0.4) 100%);
 
   border: 1px solid rgba(255,255,255,0.18);
@@ -872,41 +1291,56 @@ section,
 /* ====== Features list ====== */
 .plan-features {
   margin: 0;
-  padding-left: 1.1rem;
+  list-style: none;
+  padding-left: 0;
   display: grid;
   gap: 0.65rem;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.92);
 }
 .plan-features li {
+  position: relative;
+  padding-left: 1.1rem;
   line-height: 1.45;
   font-size: clamp(0.92rem, 1.8vw, 1rem);
   opacity: 0.95;
+}
+.plan-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
 }
 /* ===== Theme tokens ===== */
 
 /* ===== Capsule container ===== */
 .hero-capsule{
-  /* let it float with whitespace under like the image shows */
-  padding-block: clamp(2rem, 6vw, 4rem);
-  /* let it extend full width while holding a centered inner layout */
+  padding-block: clamp(2.5rem, 6vw, 4.25rem);
   background: transparent;
 }
 
 .hero-inner{
   position: relative;
-  width: min(1160px, 92vw);
+  width: min(1240px, 100%);
   margin-inline: auto;
-
-  background: linear-gradient(90deg, #1C1222 5.59%, rgba(131, 34, 195, 0.5) 133.65%);
-  border-top-right-radius: 419.18px;
-  border-bottom-right-radius: 419.18px;
-  /* overflow: clip; clip the child glow and image */
-  min-height: clamp(280px, 40vw, 380px);
+  background:
+    radial-gradient(95% 95% at 100% 0%, rgba(187, 88, 255, 0.28) 0%, rgba(187, 88, 255, 0) 65%),
+    radial-gradient(80% 110% at 0% 100%, rgba(54, 188, 255, 0.17) 0%, rgba(54, 188, 255, 0) 70%),
+    linear-gradient(165deg, rgba(28, 18, 34, 0.97), rgba(20, 14, 30, 0.98));
+  border-radius: 28px;
+  border: 1px solid rgba(187, 88, 255, 0.24);
+  min-height: clamp(290px, 40vw, 380px);
+  overflow: hidden;
+  box-shadow:
+    0 22px 40px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
   display: grid;
   align-items: center;
-  /* leave space left for the device image to “sit” */
-  padding: clamp(1.25rem, 3.5vw, 2.25rem) clamp(1.25rem, 3.5vw, 2.25rem);
+  padding: clamp(1.25rem, 3.5vw, 2.4rem) clamp(1.25rem, 3.5vw, 2.4rem);
 }
 
 /* ===== Copy block (centered) ===== */
@@ -914,11 +1348,10 @@ section,
   display: grid;
   justify-items: center;
   text-align: center;
-  gap: 0.9rem;
+  gap: 0.95rem;
   margin-inline: auto;
-  /* push content a bit right so it visually centers vs image */
-  padding-left: clamp(0rem, 5vw, 2rem);
-  max-width: 780px;
+  padding-left: clamp(0rem, 5vw, 1.5rem);
+  max-width: 760px;
 }
 
 .hero-title{
@@ -931,7 +1364,7 @@ section,
 
 .hero-sub{
   margin: 0;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.86);
   font-size: clamp(0.95rem, 1.8vw, 1.05rem);
 }
 
@@ -959,7 +1392,7 @@ section,
   /* border: 1px solid var(--pill-stroke); */
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.35),
-    0 10px 24px rgba(0,0,0,0.25);
+    0 14px 28px rgba(0,0,0,0.28);
   transition: transform .15s ease, filter .15s ease;
 }
 
@@ -974,10 +1407,11 @@ section,
 
 .diagram {
   display: grid;
-  grid-template-columns: minmax(280px, 1.35fr) clamp(130px, 18vw, 230px) minmax(170px, 1fr) clamp(55px, 8vw, 110px) minmax(170px, 1fr) clamp(55px, 8vw, 110px) minmax(170px, 1fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(90px, 0.9fr) minmax(0, 1.2fr) minmax(48px, 0.45fr) minmax(120px, 1fr);
   align-items: center;
-  justify-content: center;
-  width: min(100%, 940px);
+  justify-content: stretch;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   padding: clamp(0.5rem, 2vw, 1rem) 0;
   gap: clamp(0.25rem, 1vw, 0.5rem);
@@ -989,7 +1423,7 @@ section,
   gap: 4px;
   align-items: center;
   min-height: clamp(70px, 7vw, 74px);
-  min-width: 170px;
+  min-width: 0;
   padding: 1rem 1.15rem;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -1032,7 +1466,8 @@ section,
 .diagram-local-panel {
   display: grid;
   gap: 0.75rem;
-  min-width: 280px;
+  min-width: 0;
+  width: 100%;
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 14px;
@@ -1053,6 +1488,55 @@ section,
   min-width: 0;
   padding: 0.75rem 0.95rem;
   font-size: clamp(0.8rem, 1.05vw, 0.92rem);
+}
+
+.diagram-core-panel {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.diagram-core-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.diagram-core-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.diagram-core-stack .diagram-node {
+  min-width: 0;
+  min-height: 52px;
+  width: 100%;
+  padding: 0.75rem 0.95rem;
+  font-size: clamp(0.8rem, 1.05vw, 0.92rem);
+}
+
+.diagram-core-bridge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.diagram-line-vertical {
+  width: 3px;
+  height: 36px;
+  margin: 0 auto;
+  background-repeat: repeat-y;
+  background-size: 3px 12px;
+  animation: flow-dots-vertical 0.95s linear infinite;
 }
 
 .diagram-curves {
@@ -1136,19 +1620,20 @@ section,
 /* ===== Device image (lower-left anchored) ===== */
 .hero-device{
   position: absolute;
-  left: clamp(0.5rem, 2.25vw, 1.25rem);
-  bottom: -14%;           /* hang slightly below the capsule */
-  width: clamp(220px, 36vw, 320px);
+  left: clamp(0.8rem, 2.4vw, 1.35rem);
+  bottom: clamp(0.6rem, 2vw, 1.1rem);
+  width: clamp(210px, 33vw, 300px);
   height: auto;
   pointer-events: none;   /* decorative */
   user-select: none;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.38));
 }
 
 /* Tweak image behavior on very small screens */
 @media (max-width: 680px){
   .hero-device{
     width: clamp(180px, 50vw, 240px);
-    bottom: -10%;
+    bottom: 0.45rem;
     opacity: 0.95;
   }
   .hero-copy{
@@ -1178,6 +1663,61 @@ section,
 
   .other-section {
     padding: 0 1rem;
+  }
+
+  .hardware-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hardware-reason {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-left: 0;
+    padding-top: 1rem;
+  }
+
+  .features-section {
+    gap: 1.5rem;
+  }
+
+  .features-intro {
+    padding: 0.5rem 0;
+  }
+
+  .features-grid {
+    gap: 14px;
+  }
+
+  .features-card {
+    padding: 1.1rem 1rem 1rem;
+  }
+
+  .features-card img {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+  }
+
+  .who-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .audience-card {
+    min-height: 200px;
+  }
+
+  .getting-started-intro .subsection-title,
+  .getting-started-intro .subtitle {
+    text-align: center;
+  }
+
+  .getting-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .hardware-solution-intro .subsection-title,
+  .hardware-solution-intro .subtitle {
+    text-align: center;
   }
 
   .plans {
