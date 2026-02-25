@@ -556,6 +556,7 @@ a:hover img {
   transform: scale(1.1); /* Makes it 10% bigger */
   border-color: #BB58FF;
   border-width: 2px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 #hero {
