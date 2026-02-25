@@ -125,14 +125,14 @@ onMounted(() => {
 
 <template>
   <!-- Hero -->
-  <section class="hero-section">
+  <section class="hero-section h-[90vh] flex justify-center items-center">
     <div id="hero">
       <div class="hero-content">
         <span class="tagline">TunnelBox is a Hardware Gateway To Expose Your Local Servers & AI Models Publicly </span>
         <span class="sub-tagline">
           A dedicated hardware gateway that connects your local services to the public internet without touching your router configurations.
         </span>
-        <div class="hero-actions w-full justify-center">
+        <div class="hero-actions w-full justify-center items-center">
           <a
           class="btn"
           href="https://www.kickstarter.com"
@@ -142,17 +142,20 @@ onMounted(() => {
           <!-- <a class="btn" href="/">Learn More</a> -->
         </div>
       </div>
-      <img
+      <div class="flex h-full w-full justify-center items-center">
+        <img
         src="/box.png"
         alt="Hero"
         class="hero-image"
-      />
+        />
+      </div>
+
     </div>
 
   </section>
   
 
-  <section id="other">
+  <section id="other" class="pt-10">
     <section class="other-section core-flow-section">
       <div class="card">
         <span class="subsection-title">Expose Local Servers</span>
