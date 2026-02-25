@@ -130,15 +130,14 @@ onMounted(() => {
       <div class="hero-content">
         <span class="tagline">TunnelBox is a Hardware Gateway To Expose Your Local Servers & AI Models Publicly </span>
         <span class="sub-tagline">
-          A dedicated hardware gateway that connects your local application to the public internet with all the hard stuff
-          taken care of in one box.
+          A dedicated hardware gateway that connects your local services to the public internet without touching your router configurations.
         </span>
-        <div class="hero-actions">
+        <div class="hero-actions w-full justify-center">
           <a
-            class="btn"
-            href="https://www.kickstarter.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          class="btn"
+          href="https://www.kickstarter.com"
+          target="_blank"
+          rel="noopener noreferrer"
           >View On Kickstarter</a>
           <!-- <a class="btn" href="/">Learn More</a> -->
         </div>
@@ -158,7 +157,7 @@ onMounted(() => {
       <div class="card">
         <span class="subsection-title">Expose Local Servers</span>
         <p class="subtitle">
-          Put Your Local App on A Public URL
+          Put Your Local Service on A Public URL
         </p>
         <div
           class="diagram"
@@ -178,7 +177,7 @@ onMounted(() => {
               </div>
               <div class="diagram-node diagram-node-with-icon">
                 <span class="diagram-node-icon" aria-hidden="true">💻</span>
-                <span>Local App</span>
+                <span>Local Servers</span>
               </div>
             </div>
           </div>
@@ -214,9 +213,9 @@ onMounted(() => {
           <span class="subsection-title">Why a hardware solution?</span>
           <p class="subtitle">
             Developers should focus on what they love: building.
-            A hardware ingress puts everything you need into one box. So, no need
+            A hardware ingress that handles all networking and traffic before it reaches your service. So, no need
             for complex network configurations or other headaches to get your local
-            applications to the public.
+            services to the public.
           </p>
         </div>
         <div class="hardware-grid">
@@ -237,16 +236,13 @@ onMounted(() => {
           <div class="hardware-reason">
             <ul class="hardware-points">
               <li>
-                Handles port forwarding automatically, so you don’t touch router rules.
+                Forwards traffic to your local machine automatically, so you don’t touch router rules.
               </li>
               <li>
                 Keeps local development private by default, exposing only what you choose.
               </li>
               <li>
                 Centralizes routing for multiple devices in one place.
-              </li>
-              <li>
-                Makes webhook testing reliable without tunneling setup every session.
               </li>
               <li>
                 Lowers misconfiguration risk compared to manual network setup.
@@ -264,7 +260,7 @@ onMounted(() => {
       </div>
       <p class="subtitle">
 
-        Tunnelbox offers an array of services in connecting your services to the world.
+        Tunnelbox offers an array of features in connecting your services to the world.
       </p>
     </div>
 
@@ -273,14 +269,13 @@ onMounted(() => {
       <div class="features-grid">
         <div class="features-card">
           <img
-          src="/developer.png"
+          src="/plug.png"
           width="70"
           />
           <span class="card-header">Plug & Play</span>
           <p class="card-body">
             Plug it into power and your router, complete a quick setup, 
-            and you’re live. No network configurations. Get your services
-            up and running for the public to see.
+            and you’re live. No network configurations.
           </p>
         </div>
         <div class="features-card">
@@ -291,65 +286,7 @@ onMounted(() => {
           <span class="card-header">Zero Touch Setup</span>
           <p class="card-body">
             No need to touch your router. Once the Box is plugged in 
-            and setup, your local application is exposed to the public.
-          </p>
-        </div>
-
-        <div class="features-card">
-          <img
-          src="/automatic.png"
-          width="70"
-          />
-          <span class="card-header">Automatic SSL / TLS</span>
-          <p class="card-body">
-            Every domain comes with HTTPS out of the box.
-            Certificates are issued and renewed automatically.
-          </p>
-        </div>
-
-        <div class="features-card">
-          <img
-          src="/developer.png"
-          width="70"
-          />
-          <span class="card-header">Built for Developers</span>
-          <p class="card-body">
-            Designed for developers shipping fast. 
-            Expose localhost for webhooks and APIs, share live demos,
-            deploy staging environments, or publish AI inference endpoints in seconds.
-          </p>
-        </div>
-        <div class="features-card">
-          <img
-          src="/developer.png"
-          width="70"
-          />
-          <span class="card-header">One Box To Connect Multiple Machines</span>
-          <p class="card-body">
-            Expose multiple local services from a single TunnelBox. 
-            Route traffic to different ports, containers, or services without additional hardware
-          </p>
-        </div>
-        <div class="features-card">
-          <img
-          src="/developer.png"
-          width="70"
-          />
-          <span class="card-header">Regular Updates</span>
-          <p class="card-body">
-            Security patches, firmware upgrades, and new features are delivered
-            keeping your gateway secure and optimized.
-          </p>
-        </div>
-        <div class="features-card">
-          <img
-          src="/developer.png"
-          width="70"
-          />
-          <span class="card-header">One Year of Free Subscription</span>
-          <p class="card-body">
-              Every device includes one year of TunnelBox service — 
-              including managed domains, SSL, and updates.
+            and setup, your local service is exposed to the public.
           </p>
         </div>
         <div class="features-card">
@@ -365,12 +302,49 @@ onMounted(() => {
         </div>
         <div class="features-card">
           <img
-          src="/developer.png"
+          src="/automatic.png"
+          width="70"
+          />
+          <span class="card-header">Automatic SSL / TLS</span>
+          <p class="card-body">
+            Every domain comes with HTTPS out of the box.
+            Certificates are issued and renewed automatically.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/secure.png"
           width="70"
           />
           <span class="card-header">End-to-End Encryption</span>
           <p class="card-body">
-            All traffic is encrypted between TunnelBox and end user. 
+            All traffic is encrypted between TunnelBox and end user, ensuring secure
+            communication.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/connect.png"
+          width="70"
+          />
+          <span class="card-header">One Box To Connect Multiple Machines</span>
+          <p class="card-body">
+            Expose multiple local services from a single TunnelBox. 
+            Route traffic to different ports, containers, or services without additional hardware
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/route.png"
+          width="70"
+          />
+          <span class="card-header">Easily Control Where Your Traffic Goes</span>
+          <p class="card-body">
+            With a simple configuration on the <a
+                href="https://console.tunnelbox.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                >TunnelBox Console</a>, easily manage where your traffic goes.
           </p>
         </div>
         <div class="features-card">
@@ -378,11 +352,38 @@ onMounted(() => {
           src="/developer.png"
           width="70"
           />
-          <span class="card-header">Easily Control Where Your Traffic Goes</span>
+          <span class="card-header">Built for Developers</span>
           <p class="card-body">
-            Expose local LLMs, inference servers, or edge AI systems as production-ready HTTPS endpoints.
+            Designed for developers shipping fast. 
+            Expose localhost for webhooks and APIs, share live demos,
+            or publish AI inference endpoints in seconds.
           </p>
         </div>
+        <div class="features-card">
+          <img
+          src="/updates.png"
+          width="70"
+          />
+          <span class="card-header">Regular Updates</span>
+          <p class="card-body">
+            Security patches, firmware upgrades, and new features are delivered
+            keeping your gateway secure and optimized.
+          </p>
+        </div>
+        <div class="features-card">
+          <img
+          src="/subscription.png"
+          width="70"
+          />
+          <span class="card-header">One Year of Free Subscription</span>
+          <p class="card-body">
+              Every device includes one year of TunnelBox service — 
+              including managed domains, SSL, and updates.
+          </p>
+        </div>
+
+        
+
       </div>
       
   </section>
@@ -417,16 +418,32 @@ onMounted(() => {
       <article class="getting-step" role="listitem">
         <div class="getting-step-num">01</div>
         <h3 class="getting-step-title">Plug in power</h3>
+        <img
+        src="/step1.png"
+        />
       </article>
 
       <article class="getting-step" role="listitem">
         <div class="getting-step-num">02</div>
-        <h3 class="getting-step-title">Connect ethernet</h3>
+        <h3 class="getting-step-title">Connect ethernet</h3>        
+        <img
+        src="/step2.png"
+        />
       </article>
 
       <article class="getting-step" role="listitem">
         <div class="getting-step-num">03</div>
-        <h3 class="getting-step-title">Complete setup</h3>
+        <h3 class="getting-step-title">Setup Account and Register TunnelBox and Domains</h3>
+        <a
+        href="https://console.tunnelbox.net"
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+
+          <img
+          src="/step3.png"
+          />
+        </a>
       </article>
     </div>
   </section>
@@ -519,6 +536,23 @@ section,
 .cta-pill,
 .btn {
   font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+
+}
+
+a:hover img {
+  transform: scale(1.1); /* Makes it 10% bigger */
+  border-color: #BB58FF;
+  border-width: 2px;
 }
 
 #hero {
