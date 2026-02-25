@@ -28,7 +28,7 @@ const faqs = ref([
   },
   {
     question: 'What protocols are supported?',
-    answer: 'HTTP, HTTPS, and TCP-based services are supported. Additional protocols can be added over time.'
+    answer: 'HTTP and HTTPS services are supported. Additional protocols can be added over time.'
   },
   // {
   //   question: 'Does Tunnelbox phone home or inspect traffic?',
