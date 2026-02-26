@@ -233,35 +233,49 @@ onMounted(() => {
             </p>
           </div>
           <div class="hardware-grid">
-            <!-- <div class="hardware-media"> -->
-              <!-- <div class="image-placeholder"> -->
-                <!-- <div
-                  ref="hardwareViewer"
-                  class="three-viewer"
-                  aria-label="3D preview of TunnelBox hardware"
-                ></div>
-                <div v-if="modelLoading && !modelError" class="viewer-status">Loading 3D model...</div>
-                <div v-if="modelError" class="viewer-status viewer-status-error">Failed to load model</div> -->
+            <div class="hardware-media-shell">
+              <div class="hardware-media-head">
+                <span class="hardware-chip">Gateway Online</span>
+                <span class="hardware-chip hardware-chip-muted">Dev Mode</span>
+              </div>
+              <div class="hardware-media-visual" aria-hidden="true">
+                <div class="hardware-media-grid"></div>
                 <img
-                src="/box.png"
+                  src="/box.png"
+                  alt="TunnelBox hardware gateway"
+                  class="hardware-media-image"
                 />
-              <!-- </div> -->
-            <!-- </div> -->
+              </div>
+              <div class="hardware-signal-panel" aria-hidden="true">
+                <span class="hardware-signal-dot"></span>
+                <p>localhost traffic routed through TunnelBox ingress</p>
+              </div>
+            </div>
             <div class="hardware-reason">
-              <ul class="hardware-points">
-                <li>
+              <div class="hardware-reason-card">
+                <p class="hardware-reason-num">01</p>
+                <p>
                   Forwards traffic to your local machine automatically, so you don’t touch router rules.
-                </li>
-                <li>
+                </p>
+              </div>
+              <div class="hardware-reason-card">
+                <p class="hardware-reason-num">02</p>
+                <p>
                   Keeps local development private by default, exposing only what you choose.
-                </li>
-                <li>
+                </p>
+              </div>
+              <div class="hardware-reason-card">
+                <p class="hardware-reason-num">03</p>
+                <p>
                   Centralizes routing for multiple devices in one place.
-                </li>
-                <li>
+                </p>
+              </div>
+              <div class="hardware-reason-card">
+                <p class="hardware-reason-num">04</p>
+                <p>
                   Lowers misconfiguration risk compared to manual network setup.
-                </li>
-              </ul>
+                </p>
+              </div>
             </div>
         </div>
       </div>
@@ -803,61 +817,60 @@ a:hover img {
 }
 
 .hardware-reason {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-weight: 500;
-  gap: 1.1rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.14);
-  padding-left: clamp(1rem, 2.4vw, 2rem);
-}
-
-.hardware-reason h1 {
-  font-size: clamp(1.55rem, 2.9vw, 2.2rem);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.hardware-reason p {
-  font-size: clamp(1rem, 1.35vw, 1.12rem);
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.hardware-points {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
-  gap: 0.75rem;
+  gap: 0.72rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.hardware-points li {
+.hardware-reason-card {
   position: relative;
+  overflow: hidden;
   margin: 0;
-  padding: 0.3rem 0 0.3rem 2.2rem;
-  line-height: 1.55;
-  font-size: clamp(0.94rem, 1.08vw, 1rem);
-  color: rgba(255, 255, 255, 0.94);
+  padding: 0.85rem 0.92rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
-.hardware-points li::before {
-  content: "✓";
+.hardware-reason-card::after {
+  content: "";
   position: absolute;
-  left: 0.72rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.05rem;
-  height: 1.05rem;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, #BB58FF 0%, #36BCFF 100%);
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 800;
-  line-height: 1;
+  inset: -120% auto auto -20%;
+  width: 40%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(54, 188, 255, 0.2), rgba(54, 188, 255, 0));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.hardware-reason-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(54, 188, 255, 0.48);
+  background:
+    linear-gradient(155deg, rgba(54, 188, 255, 0.18), rgba(187, 88, 255, 0.08));
+}
+
+.hardware-reason-card:hover::after {
+  opacity: 1;
+}
+
+.hardware-reason-num {
+  margin: 0 0 0.35rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: rgba(54, 188, 255, 0.92);
+}
+
+.hardware-reason-card p {
+  margin: 0;
+  line-height: 1.46;
+  font-size: clamp(0.9rem, 1.06vw, 0.96rem);
+  color: rgba(255, 255, 255, 0.94);
 }
 
 
@@ -1933,62 +1946,117 @@ a:hover img {
   letter-spacing: -0.015em;
 }
 
-.image-placeholder {
-  width: 100%;
-  min-height: 520px;
-  position: relative;
+.hardware-media-shell {
+  display: grid;
+  gap: 0.78rem;
+}
+
+.hardware-media-head {
   display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hardware-chip {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(54, 188, 255, 0.36);
+  background: rgba(54, 188, 255, 0.14);
+  color: rgba(236, 247, 255, 0.94);
+  padding: 0.28rem 0.62rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.hardware-chip-muted {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hardware-media-visual {
+  position: relative;
+  min-height: 340px;
+  border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background:
-    radial-gradient(70% 90% at 50% 95%, rgba(54, 188, 255, 0.2), rgba(54, 188, 255, 0) 63%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+    radial-gradient(75% 95% at 50% 100%, rgba(54, 188, 255, 0.17), rgba(54, 188, 255, 0) 64%),
+    linear-gradient(170deg, rgba(20, 24, 35, 0.84), rgba(11, 14, 22, 0.92));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 10px 30px rgba(0, 0, 0, 0.28);
-}
-
-.hardware-media img {
-  width: min(100%, 560px);
-  max-height: 390px;
-  height: auto;
-  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.4));
-}
-
-.three-viewer {
-  width: min(100%, 560px);
-  height: 420px;
-  border-radius: 18px;
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 34px rgba(0, 0, 0, 0.34);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background:
-    radial-gradient(70% 80% at 50% 90%, rgba(58, 168, 255, 0.16), rgba(58, 168, 255, 0) 60%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
 }
 
-.three-viewer :deep(canvas) {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.viewer-status {
+.hardware-media-grid {
   position: absolute;
-  inset: auto 0 1rem 0;
-  margin: 0 auto;
-  width: fit-content;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(18, 13, 24, 0.7);
-  font-size: 0.85rem;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9));
+  opacity: 0.45;
 }
 
-.viewer-status-error {
-  border-color: rgba(255, 110, 110, 0.5);
-  color: #ffb5b5;
+.hardware-media-image {
+  position: absolute;
+  inset: 52% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: min(86%, 440px);
+  height: auto;
+  filter: drop-shadow(0 18px 26px rgba(0, 0, 0, 0.42));
+  animation: hardware-float 4.8s ease-in-out infinite;
+}
+
+.hardware-signal-panel {
+  display: flex;
+  align-items: center;
+  gap: 0.52rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.45rem 0.62rem;
+}
+
+.hardware-signal-panel p {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.hardware-signal-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #36bcff;
+  box-shadow: 0 0 0 0 rgba(54, 188, 255, 0.52);
+  animation: hardware-dot-pulse 1.6s ease-out infinite;
+}
+
+@keyframes hardware-float {
+  0%, 100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(-50%, -53%);
+  }
+}
+
+@keyframes hardware-dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(54, 188, 255, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(54, 188, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(54, 188, 255, 0);
+  }
 }
 
 .cta {
@@ -2527,10 +2595,11 @@ a:hover img {
   }
 
   .hardware-reason {
-    border-left: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-    padding-left: 0;
-    padding-top: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .hardware-media-visual {
+    min-height: 280px;
   }
 
   .features-section {
