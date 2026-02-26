@@ -86,8 +86,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'TunnelBox © ' + new Date().getFullYear() + ' Irvinesoft',
-      copyright: '© ' + new Date().getFullYear() + ' Irvinesoft'
+      copyright: 'TunnelBox © ' + new Date().getFullYear() + ' Irvinesoft'
     },
 
     search: {

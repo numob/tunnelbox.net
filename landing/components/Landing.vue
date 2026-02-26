@@ -142,9 +142,9 @@ onMounted(() => {
           <!-- <a class="btn" href="/">Learn More</a> -->
         </div>
       </div>
-      <div class="flex h-full w-full justify-center items-center">
+      <div class="flex h-full w-full justify-center items-end">
         <img
-        src="/box.png"
+        src="/frontleftview.png"
         alt="Hero"
         class="hero-image"
         />
@@ -157,103 +157,115 @@ onMounted(() => {
 
   <section id="other" class="pt-10">
     <section class="other-section core-flow-section">
-      <div class="card">
-        <span class="subsection-title">Expose Local Servers</span>
-        <p class="subtitle">
-          Put Your Local Service on A Public URL
-        </p>
-        <div
-          class="diagram"
-          role="img"
-          aria-label="AI local model, webhooks, and localhost traffic are routed through TunnelBox and tunnel servers to a public URL"
-        >
-          <div class="diagram-local-panel">
-            <div class="diagram-local-title">Localhost</div>
-            <div class="diagram-local-stack">
-              <div class="diagram-node diagram-node-with-icon">
-                <span class="diagram-node-icon" aria-hidden="true">🤖</span>
-                <span>AI Local Model</span>
-              </div>
-              <div class="diagram-node diagram-node-with-icon">
-                <span class="diagram-node-icon" aria-hidden="true">🔗</span>
-                <span>Services</span>
-              </div>
-              <div class="diagram-node diagram-node-with-icon">
-                <span class="diagram-node-icon" aria-hidden="true">💻</span>
-                <span>Local Servers</span>
+      <section class="h-screen">      
+        <div class="card">
+          <span class="subsection-title">Expose Your Local Services With A Public URL</span>
+          <div
+            class="diagram"
+            role="img"
+            aria-label="AI local model, webhooks, and localhost traffic are routed through TunnelBox and tunnel servers to a public URL"
+          >
+            <div class="diagram-local-panel">
+              <div class="diagram-local-title">Localhost</div>
+              <div class="diagram-local-stack">
+                <div class="diagram-node diagram-node-with-icon">
+                  <span class="diagram-node-icon" aria-hidden="true">🤖</span>
+                  <span>AI Local Model</span>
+                </div>
+                <div class="diagram-node diagram-node-with-icon">
+                  <span class="diagram-node-icon" aria-hidden="true">🔗</span>
+                  <span>Services</span>
+                </div>
+                <div class="diagram-node diagram-node-with-icon">
+                  <span class="diagram-node-icon" aria-hidden="true">💻</span>
+                  <span>Local Servers</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="diagram-curves" aria-hidden="true">
-            <svg class="curve-layer" viewBox="0 0 260 220" preserveAspectRatio="none">
-              <path class="curve-line" d="M 8 36 H 102 Q 130 36 130 64 V 110" />
-              <path class="curve-line" d="M 8 110 H 270" />
-              <path class="curve-line" d="M 8 184 H 102 Q 130 184 130 156 V 110" />
-            </svg>
-          </div>
+            <div class="diagram-curves" aria-hidden="true">
+              <svg class="curve-layer" viewBox="0 0 260 220" preserveAspectRatio="none">
+                <path class="curve-line" d="M 8 36 H 102 Q 130 36 130 64 V 110" />
+                <path class="curve-line" d="M 8 110 H 270" />
+                <path class="curve-line" d="M 8 184 H 102 Q 130 184 130 156 V 110" />
+              </svg>
+            </div>
 
-          <div class="diagram-core-panel">
-            <div class="diagram-core-title">Tunnel Stack</div>
-            <div class="diagram-core-stack">
-              <div class="diagram-node diagram-node-core">TunnelBox</div>
-              <!-- <div class="diagram-core-bridge" aria-hidden="true">
-                <div class="diagram-line diagram-line-vertical"></div>
-                <div class="diagram-line diagram-line-vertical"></div>
-              </div> -->
-              <div class="diagram-node diagram-node-core">Servers</div>
+            <div class="diagram-core-panel">
+              <div class="diagram-core-title">Tunnel Stack</div>
+              <div class="diagram-core-stack">
+                <div class="diagram-node diagram-node-with-icon">
+                  <img 
+                  src="/boxicon.png"
+                  class="diagram-node-icon" aria-hidden="true"></img>
+                  <span>TunnelBox</span>
+                </div>
+                <!-- <div class="diagram-core-bridge" aria-hidden="true">
+                  <div class="diagram-line diagram-line-vertical"></div>
+                  <div class="diagram-line diagram-line-vertical"></div>
+                </div> -->
+                <div class="diagram-node diagram-node-with-icon">
+                  <img 
+                  src="/server.png"
+                  class="diagram-node-icon" aria-hidden="true"></img>
+                  <span>Tunnel Servers</span>
+                </div>
+              </div>
+            </div>
+            <div class="diagram-line" aria-hidden="true"></div>
+            <div class="diagram-node diagram-node-with-icon">
+              <span class="diagram-node-icon" aria-hidden="true">🌐</span>
+              <span>Public URL</span>
             </div>
           </div>
-          <div class="diagram-line" aria-hidden="true"></div>
-          <div class="diagram-node diagram-node-with-icon">
-            <span class="diagram-node-icon" aria-hidden="true">🌐</span>
-            <span>Public URL</span>
-          </div>
-        </div>
 
-      </div>
-      <div class="card hardware-solution-card">
-        <div class="hardware-solution-intro">
-          <span class="subsection-title">Why a hardware solution?</span>
-          <p class="subtitle">
-            Developers should focus on what they love: building.
-            A hardware ingress that handles all networking and traffic before it reaches your service. So, no need
-            for complex network configurations or other headaches to get your local
-            services to the public.
-          </p>
         </div>
-        <div class="hardware-grid">
-          <!-- <div class="hardware-media"> -->
-            <!-- <div class="image-placeholder"> -->
-              <!-- <div
-                ref="hardwareViewer"
-                class="three-viewer"
-                aria-label="3D preview of TunnelBox hardware"
-              ></div>
-              <div v-if="modelLoading && !modelError" class="viewer-status">Loading 3D model...</div>
-              <div v-if="modelError" class="viewer-status viewer-status-error">Failed to load model</div> -->
-              <img
-              src="/box.png"
-              />
+      </section>
+
+      <section class="h-screen">
+        <div class="card hardware-solution-card">
+          <div class="hardware-solution-intro">
+            <span class="subsection-title">Why a hardware solution?</span>
+            <p class="subtitle">
+              Developers should focus on what they love: building.
+              A hardware ingress that handles all networking and traffic before it reaches your service. So, no need
+              for complex network configurations or other headaches to get your local
+              services to the public.
+            </p>
+          </div>
+          <div class="hardware-grid">
+            <!-- <div class="hardware-media"> -->
+              <!-- <div class="image-placeholder"> -->
+                <!-- <div
+                  ref="hardwareViewer"
+                  class="three-viewer"
+                  aria-label="3D preview of TunnelBox hardware"
+                ></div>
+                <div v-if="modelLoading && !modelError" class="viewer-status">Loading 3D model...</div>
+                <div v-if="modelError" class="viewer-status viewer-status-error">Failed to load model</div> -->
+                <img
+                src="/box.png"
+                />
+              <!-- </div> -->
             <!-- </div> -->
-          <!-- </div> -->
-          <div class="hardware-reason">
-            <ul class="hardware-points">
-              <li>
-                Forwards traffic to your local machine automatically, so you don’t touch router rules.
-              </li>
-              <li>
-                Keeps local development private by default, exposing only what you choose.
-              </li>
-              <li>
-                Centralizes routing for multiple devices in one place.
-              </li>
-              <li>
-                Lowers misconfiguration risk compared to manual network setup.
-              </li>
-            </ul>
-          </div>
+            <div class="hardware-reason">
+              <ul class="hardware-points">
+                <li>
+                  Forwards traffic to your local machine automatically, so you don’t touch router rules.
+                </li>
+                <li>
+                  Keeps local development private by default, exposing only what you choose.
+                </li>
+                <li>
+                  Centralizes routing for multiple devices in one place.
+                </li>
+                <li>
+                  Lowers misconfiguration risk compared to manual network setup.
+                </li>
+              </ul>
+            </div>
+        </div>
       </div>
-    </div>
+    </section>
   </section>
   <!-- Value Prop -->
    <section class="other-section features-section">
@@ -267,6 +279,20 @@ onMounted(() => {
       </p>
     </div>
 
+
+    <div class="features-showcase">
+      <aside class="features-spotlight" aria-label="Feature highlights">
+        <p class="features-kicker">Built to ship fast</p>
+        <h3>Local development speed with public endpoint reliability.</h3>
+        <ul class="features-signals">
+          <li>No router gymnastics or fragile port forwarding steps.</li>
+          <li>Production-like security defaults for local workflows.</li>
+          <li>One gateway that scales from side projects to team demos.</li>
+        </ul>
+        <div class="features-pulse">
+          <span>Ideal for webhooks, APIs, and AI endpoint previews</span>
+        </div>
+      </aside>
 
       <!-- Features -->
       <div class="features-grid">
@@ -288,7 +314,7 @@ onMounted(() => {
           />
           <span class="card-header">Zero Touch Setup</span>
           <p class="card-body">
-            No need to touch your router. Once the Box is plugged in 
+            No need to configure your router. Once the Box is plugged in 
             and setup, your local service is exposed to the public.
           </p>
         </div>
@@ -297,9 +323,9 @@ onMounted(() => {
           src="/domains.png"
           width="70"
           />
-          <span class="card-header">Free Managed Domains</span>
+          <span class="card-header">Multiple Public Domains</span>
           <p class="card-body">
-            Depending on your subscription, create multiple public domains per port.
+            Create multiple public domains per port.
             <!-- Route each domain to a different local service or port. -->
           </p>
         </div>
@@ -310,7 +336,7 @@ onMounted(() => {
           />
           <span class="card-header">Automatic SSL / TLS</span>
           <p class="card-body">
-            Every domain comes with HTTPS out of the box.
+            Every domain is provisioned with SSL / TLS.
             Certificates are issued and renewed automatically.
           </p>
         </div>
@@ -322,7 +348,7 @@ onMounted(() => {
           <span class="card-header">End-to-End Encryption</span>
           <p class="card-body">
             All traffic is encrypted between TunnelBox and end user, ensuring secure
-            communication.
+            connections.
           </p>
         </div>
         <div class="features-card">
@@ -388,30 +414,196 @@ onMounted(() => {
         
 
       </div>
+    </div>
       
   </section>
   <section class="other-section tunnelbox-who">
 
-      <div class="subsection-title">
-        <span>Who is Tunnelbox for?</span>
+    <div class="flex flex-col w-full justify-center items-center text-center">
+      <div class="subsection-title flex w-full justify-center items-center">
+        <span>Who is TunnelBox for?</span>
+      </div>
+      <p class="subtitle who-subtitle pb-4">
+        Built for developers who need reliable public endpoints from local environments without complicated network configurations.
+      </p>
+      <div class="who-fit-chips flex w-full justify-center items-center" aria-label="Best fit scenarios">
+        <span>Local Services</span>
+        <span>Live demos</span>
+        <span>AI inference endpoints</span>
+      </div>
+    </div>
+
+    <div class="who-grid">
+      <article class="audience-card audience-card-students" aria-label="Hobbyists and students">
+        <div class="audience-visual">
+          <img src="/Hobbyists.png" alt="Hobbyists and students" />
+        </div>
+        <div class="audience-body">
+          <p class="audience-kicker">Learning & Shipping</p>
+          <h3>Hobbyists & Students</h3>
+          <p>
+            Move from localhost to a shareable URL in minutes. Great for portfolios, side projects, and hackathon demos.
+          </p>
+          <ul>
+            <li>Show projects to mentors and recruiters instantly</li>
+            <li>Test webhook flows without cloud setup</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="who-bridge-card" aria-hidden="true">
+        <p>Localhost to public URL</p>
+        <div class="who-bridge">
+          <div class="bridge-laptop">
+            <div class="bridge-laptop-screen"></div>
+            <div class="bridge-laptop-base"></div>
+          </div>
+            <div class="bridge-fork-svg" aria-hidden="true">
+            <svg viewBox="0 0 90 64" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="bridge-packet-stroke" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#36bcff" />
+                  <stop offset="100%" stop-color="#bb58ff" />
+                </linearGradient>
+              </defs>
+              <path class="bridge-fork-path bridge-fork-path-solid" d="M 0 32 H 88" />
+            </svg>
+          </div>
+          <div class="bridge-core bridge-core-stacked">
+            <span>TunnelBox</span>
+            <span>+</span>
+            <span>Server</span>
+          </div>
+            <div class="bridge-fork-svg" aria-hidden="true">
+            <svg viewBox="0 0 90 64" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="bridge-packet-stroke" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#36bcff" />
+                  <stop offset="100%" stop-color="#bb58ff" />
+                </linearGradient>
+              </defs>
+              <path class="bridge-fork-path bridge-fork-path-solid" d="M 0 32 H 88" />
+            </svg>
+          </div>
+          <div class="bridge-laptop">
+            <div class="bridge-laptop-screen"></div>
+            <div class="bridge-laptop-base"></div>
+          </div>
+        </div>
       </div>
 
-      <div class="who-grid">
-        <div class="hobbyist audience-card">
-          <span>Hobbyists & Students</span>
-        </div>
-        <div class="team audience-card">
-          <span>Developers</span>
-        </div>
-        <div class="pro audience-card">
-          <span>Teams & Startups</span>
+      <div class="who-bridge-card" aria-hidden="true">
+        <p>Preview and test instantly</p>
+        <div class="who-bridge who-bridge-fork">
+
+            <div class="bridge-left-stack">
+              <div class="bridge-laptop">
+                <div class="bridge-laptop-screen"></div>
+                <div class="bridge-laptop-base"></div>
+              </div>
+              <div></div>
+              <div></div>
+              <div class="bridge-laptop">
+                <div class="bridge-laptop-screen"></div>
+                <div class="bridge-laptop-base"></div>
+              </div>
+              <div class="bridge-laptop">
+                <div class="bridge-laptop-screen"></div>
+                <div class="bridge-laptop-base"></div>
+              </div>
+              <div></div>
+            </div>
+
+            <div class="bridge-fork-svg" aria-hidden="true">
+            <svg viewBox="0 0 90 64" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="bridge-packet-stroke" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#36bcff" />
+                  <stop offset="100%" stop-color="#bb58ff" />
+                </linearGradient>
+              </defs>
+              <path class="bridge-fork-path bridge-fork-path-solid" d="M 5 32 H 88" />
+            </svg>
+          </div>
+          <div class="bridge-core bridge-core-stacked">
+            <span>TunnelBox</span>
+            <span>+</span>
+            <span>Server</span>
+          </div>
+          <div class="bridge-fork-svg" aria-hidden="true">
+            <svg viewBox="0 0 90 64" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="bridge-packet-stroke" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#36bcff" />
+                  <stop offset="100%" stop-color="#bb58ff" />
+                </linearGradient>
+              </defs>
+              <path class="bridge-fork-path bridge-fork-path-solid" d="M -4 32 H 55" />
+              <path class="bridge-fork-path" d="M 55 32 V 12 Q 55 6 61 6 H 100" />
+              <path class="bridge-fork-path" d="M 55 32 V 52 Q 55 58 61 58 H 100" />
+            </svg>
+          </div>
+          <div class="bridge-right-stack">
+            <div class="bridge-endpoint">
+              <div class="bridge-laptop">
+                <div class="bridge-laptop-screen"></div>
+                <div class="bridge-laptop-base"></div>
+              </div>
+            </div>
+            <div class="bridge-endpoint">
+              <div class="bridge-person" title="Developer">
+                <span class="bridge-person-head"></span>
+                <span class="bridge-person-body"></span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
+
+      <article class="audience-card audience-card-devs" aria-label="Indie and freelance developers">
+        <div class="audience-visual">
+          <img src="/Professional Devs.png" alt="Indie and freelance developers" />
+        </div>
+        <div class="audience-body">
+          <p class="audience-kicker">Fast Local Iteration</p>
+          <h3>Indie & Freelance Developers</h3>
+          <p>
+            Keep building locally while exposing only what clients or teammates need to access for testing and feedback.
+          </p>
+          <ul>
+            <li>Share staging-like previews from your own machine</li>
+            <li>Run secure client demos without cloud redeploys</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="audience-card audience-card-teams" aria-label="Product teams and startups">
+        <div class="audience-visual">
+          <img src="/Teams&Startups.png" alt="Product teams and startups" />
+        </div>
+        <div class="audience-body">
+          <p class="audience-kicker">Team Workflows</p>
+          <h3>Product Teams & Startups</h3>
+          <p>
+            Route multiple services through one hardware gateway and standardize how your team exposes internal environments.
+          </p>
+          <ul>
+            <li>Centralized ingress for QA, support, and integrations</li>
+            <li>Fewer router changes and less misconfiguration risk</li>
+          </ul>
+        </div>
+      </article>
+
+      <div class="who-bridge-card" aria-hidden="true">
+        <p>One gateway, multiple services</p>
+      </div>
+    </div>
 
     
   </section>
 
-  <section class="other-section getting-started-section" aria-labelledby="getting-started-title">
+  <section class="other-section getting-started-section h-screen" aria-labelledby="getting-started-title">
     <div class="getting-started-intro">
       <h2 id="getting-started-title" class="subsection-title">Getting Started</h2>
       <p class="subtitle">Three stages to getting started.</p>
@@ -455,7 +647,7 @@ onMounted(() => {
 <section class="pricing-wrap" aria-labelledby="pricing-title">
   <h2 id="pricing-title" class="pricing-title">Pricing</h2>
 
-  <div class="plans" role="list">
+  <div class="" role="list">
     <article class="pricing-card" role="listitem" aria-label="Starter plan">
       <header class="plan-head">
         <h3 class="plan-name">TunnelBox Price</h3>
@@ -475,7 +667,7 @@ onMounted(() => {
     </article>
 
     <!-- Pro -->
-    <article class="pricing-card" role="listitem" aria-label="Pro plan">
+    <!-- <article class="pricing-card" role="listitem" aria-label="Pro plan">
       <header class="plan-head">
         <h3 class="plan-name">Yearly Subscription</h3>
         <div class="plan-price">
@@ -490,7 +682,7 @@ onMounted(() => {
         <li>Rerouting</li>
         <li>Security</li>
       </ul>
-    </article>
+    </article> -->
   </div>
 </section>
 
@@ -594,53 +786,6 @@ a:hover img {
   /* padding: 4rem 1rem;s */
 }
 
-.hobbyist{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background-image: url('/Hobbyists.png');
-
-  /* padding: 20px; */
-  /* object-fit: contain; */
-  /* height: 100vh; */
-  background-size: cover;   /* fill container */
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.team{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background-image: url('/Teams&Startups.png');
-  border-radius: 30px;
-  /* padding: 20px; */
-  object-fit: fill;
-  /* height: 100vh; */
-  background-size: cover;   /* fill container */
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
-.pro{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background-image: url('/Professional Devs.png');
-  border-radius: 30px;
-  /* padding: 20px; */
-  object-fit: fill;
-  /* height: 100vh; */
-  background-size: cover;   /* fill container */
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-
 .other-section{
   width: min(1240px, 100%);
   margin-inline: auto;
@@ -737,63 +882,583 @@ a:hover img {
 }
 
 .tunnelbox-who {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: clamp(1.2rem, 3vw, 2.2rem);
-  width: 100%;
-  padding: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  gap: clamp(1.3rem, 2.8vw, 2rem);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
   border-radius: 24px;
-  border: 1px solid rgba(187, 88, 255, 0.2);
+  border: 1px solid rgba(54, 188, 255, 0.24);
   background:
-    radial-gradient(80% 100% at 0% 100%, rgba(54, 188, 255, 0.14), rgba(54, 188, 255, 0) 65%),
-    radial-gradient(90% 95% at 100% 0%, rgba(187, 88, 255, 0.2), rgba(187, 88, 255, 0) 60%),
-    linear-gradient(165deg, rgba(36, 24, 44, 0.97), rgba(20, 14, 30, 0.98));
+    radial-gradient(95% 120% at 100% -10%, rgba(54, 188, 255, 0.22), rgba(54, 188, 255, 0) 56%),
+    radial-gradient(80% 100% at 0% 100%, rgba(187, 88, 255, 0.18), rgba(187, 88, 255, 0) 66%),
+    linear-gradient(160deg, rgba(27, 18, 34, 0.98), rgba(14, 10, 22, 0.98));
   box-shadow:
-    0 22px 40px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    0 24px 42px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.who-headline {
+  text-align: left;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.who-headline .subsection-title {
+  text-align: left;
+}
+
+.who-subtitle {
+  margin: 0;
+  text-align: left;
+  max-width: 70ch;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.who-fit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.who-fit-chips span {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.35rem 0.72rem;
+  font-size: 0.77rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .who-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: clamp(0.85rem, 2vw, 1.2rem);
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  grid-auto-rows: minmax(280px, auto);
+  gap: clamp(0.9rem, 2vw, 1.3rem);
+  align-items: stretch;
+}
+
+.who-bridge-card {
+  min-height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 0.7rem;
+  padding: 1.2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(80% 100% at 100% 0%, rgba(54, 188, 255, 0.16), rgba(54, 188, 255, 0) 62%),
+    radial-gradient(85% 95% at 0% 100%, rgba(187, 88, 255, 0.16), rgba(187, 88, 255, 0) 64%),
+    linear-gradient(165deg, rgba(32, 22, 43, 0.95), rgba(15, 11, 23, 0.98));
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.who-bridge-card > p {
+  margin: 0;
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.who-bridge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 70px;
+  padding: 0.3rem 0.5rem;
+}
+
+.who-bridge-fork {
+  display: grid;
+  grid-template-columns: 72px 128px minmax(96px, max-content) 128px 72px;
+  column-gap: 0.45rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.who-bridge-card.is-reverse .who-bridge {
+  flex-direction: row-reverse;
+}
+
+.bridge-left-stack {
+  width: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  align-items: center;
+  row-gap: 0.55rem;
+}
+
+.bridge-laptop {
+  width: 40px;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.bridge-laptop-screen {
+  width: 34px;
+  height: 22px;
+  border-radius: 5px 5px 3px 3px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: linear-gradient(160deg, rgba(187, 88, 255, 0.25), rgba(54, 188, 255, 0.25));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.bridge-laptop-base {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.bridge-person {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  /* gap: 2px; */
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background:
+    radial-gradient(90% 90% at 20% 15%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 62%),
+    linear-gradient(160deg, rgba(54, 188, 255, 0.3), rgba(187, 88, 255, 0.32));
+  box-shadow:
+    0 0 0 3px rgba(54, 188, 255, 0.08),
+    0 0 14px rgba(187, 88, 255, 0.26);
+}
+
+.bridge-person-head {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.bridge-person-body {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px 999px 6px 6px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.bridge-line {
+  position: relative;
+  width: min(18vw, 140px);
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(54, 188, 255, 0.3), rgba(187, 88, 255, 0.3));
+  overflow: hidden;
+}
+
+.bridge-fork-svg {
+  width: min(19vw, 146px);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.bridge-fork-svg svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+/* 
+  position: absolute;
+  left: -14px;
+  top: -2px;
+  width: 8px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #36bcff 0%, #bb58ff 100%);
+  filter: drop-shadow(0 0 5px rgba(54, 188, 255, 0.6));
+  animation: bridge-flow 1.6s linear infinite; */
+
+.bridge-fork-path,
+.who-bridge-card path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke: url(#bridge-packet-stroke);
+  stroke-dasharray: 7 6;
+  filter: drop-shadow(0 0 5px rgba(54, 188, 255, 0.6));
+  animation: curve-flow 1.6s linear infinite;
+}
+
+.bridge-fork-path-solid {
+  stroke: #8ad8ff !important;
+  stroke-width: 2.4;
+  stroke-dasharray: none;
+  animation: none;
+}
+
+.bridge-right-stack {
+  width: 72px;
+  display: grid;
+  gap: 1.2rem;
+  justify-items: center;
+}
+
+.bridge-endpoint {
+  display: flex;
+  align-items: center;
+  height: 34px;
+}
+
+.bridge-packet {
+  position: absolute;
+  left: -14px;
+  top: -2px;
+  width: 8px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #36bcff 0%, #bb58ff 100%);
+  filter: drop-shadow(0 0 5px rgba(54, 188, 255, 0.6));
+  animation: bridge-flow 1.6s linear infinite;
+}
+
+.bridge-packet:nth-child(2) {
+  animation-delay: 0.45s;
+}
+
+.bridge-packet:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.bridge-line-reverse .bridge-packet {
+  animation-name: bridge-flow-reverse;
+}
+
+  /* position: relative;
+  width: min(18vw, 140px);
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(54, 188, 255, 0.3), rgba(187, 88, 255, 0.3));
+  overflow: hidden; */
+
+.bridge-core {
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0.38rem 0.72rem;
+  max-width: min(44vw, 260px);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background:
+    radial-gradient(95% 95% at 20% 15%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(150deg, rgba(54, 188, 255, 0.75), rgba(187, 88, 255, 0.75));
+  box-shadow:
+    0 0 0 4px rgba(54, 188, 255, 0.08),
+    0 0 16px rgba(54, 188, 255, 0.4);
+  animation: bridge-pulse 1.8s ease-in-out infinite;
+}
+
+.bridge-core-stacked {
+  white-space: normal;
+  display: inline-grid;
+  justify-items: center;
+  align-items: center;
+  gap: 0.06rem;
+  padding: 0.34rem 0.62rem;
+}
+
+.bridge-core-stacked span {
+  display: block;
+}
+
+.who-network-diagram {
+  position: relative;
+  display: grid;
+  grid-template-columns: 140px auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  min-height: 220px;
+  padding: 0.4rem 0.8rem;
+}
+
+.who-network-lines {
+  position: absolute;
+  inset: 0.8rem 0.9rem;
+  width: calc(100% - 1.8rem);
+  height: calc(100% - 1.6rem);
+  pointer-events: none;
+}
+
+.who-network-left {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: end;
+}
+
+.team-cluster {
+  position: relative;
+  width: 96px;
+  min-height: 56px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(90% 90% at 0% 100%, rgba(54, 188, 255, 0.15), rgba(54, 188, 255, 0) 66%),
+    linear-gradient(165deg, rgba(33, 24, 45, 0.94), rgba(17, 12, 25, 0.97));
+  display: grid;
+  place-items: center;
+  padding: 0.35rem 0.5rem;
+}
+
+.team-cluster::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  width: 18px;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(54, 188, 255, 0.65), rgba(187, 88, 255, 0.65));
+  box-shadow: 0 0 6px rgba(54, 188, 255, 0.35);
+}
+
+.team-person {
+  display: grid;
+  justify-items: center;
+  line-height: 1;
+  margin-bottom: 0.15rem;
+}
+
+.team-person-head {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.team-person-body {
+  width: 13px;
+  height: 8px;
+  border-radius: 10px 10px 6px 6px;
+  background: rgba(255, 255, 255, 0.86);
+  margin-top: 1px;
+}
+
+.team-computer {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.team-computer-screen {
+  width: 24px;
+  height: 15px;
+  border-radius: 4px 4px 3px 3px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: linear-gradient(160deg, rgba(187, 88, 255, 0.25), rgba(54, 188, 255, 0.25));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.team-computer-base {
+  width: 28px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.who-network-core {
+  position: relative;
+  z-index: 1;
+}
+
+.who-network-core::before,
+.who-network-core::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 22px;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(54, 188, 255, 0.65), rgba(187, 88, 255, 0.65));
+  box-shadow: 0 0 6px rgba(54, 188, 255, 0.35);
+}
+
+.who-network-core::before {
+  left: -22px;
+}
+
+.who-network-core::after {
+  right: -22px;
+}
+
+.who-network-right {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.who-network-globe {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background:
+    radial-gradient(95% 95% at 20% 15%, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(150deg, rgba(54, 188, 255, 0.72), rgba(187, 88, 255, 0.72));
+  box-shadow:
+    0 0 0 4px rgba(54, 188, 255, 0.08),
+    0 0 16px rgba(54, 188, 255, 0.32);
+}
+
+.who-network-globe::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  width: 18px;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(54, 188, 255, 0.65), rgba(187, 88, 255, 0.65));
+  box-shadow: 0 0 6px rgba(54, 188, 255, 0.35);
+}
+
+.who-bridge-fork .bridge-line,
+.who-bridge-fork .bridge-fork-svg {
+  width: 128px;
 }
 
 .audience-card {
   position: relative;
-  min-height: clamp(220px, 24vw, 280px);
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: clamp(1rem, 2.4vw, 1.35rem);
+  min-height: clamp(280px, 29vw, 360px);
+  display: grid;
+  grid-template-rows: minmax(130px, 170px) auto;
   border-radius: 20px;
   overflow: hidden;
-  isolation: isolate;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(170deg, rgba(34, 23, 45, 0.95), rgba(17, 12, 25, 0.97));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 14px 26px rgba(0, 0, 0, 0.3);
+    0 14px 28px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
-.audience-card::before {
+.audience-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.audience-visual::after {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg, rgba(12, 8, 18, 0.08) 20%, rgba(12, 8, 18, 0.84) 100%);
-  z-index: -1;
+  background: linear-gradient(180deg, rgba(10, 8, 16, 0.15) 0%, rgba(10, 8, 16, 0.8) 100%);
+}
+
+.audience-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 0.35s ease;
+}
+
+.audience-body {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1rem 1.1rem;
+}
+
+.audience-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(54, 188, 255, 0.92);
+  font-weight: 700;
+}
+
+.audience-body h3 {
+  margin: 0;
+  font-size: clamp(1.1rem, 1.35vw, 1.32rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.audience-body > p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.audience-body ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.42rem;
+}
+
+.audience-body li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.86rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.audience-body li::before {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #36bcff 0%, #bb58ff 100%);
+}
+
+.audience-card-students .audience-kicker {
+  color: #95ecff;
+}
+
+.audience-card-devs .audience-kicker {
+  color: #b8b2ff;
+}
+
+.audience-card-teams .audience-kicker {
+  color: #7ee8ff;
 }
 
 .audience-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: rgba(54, 188, 255, 0.4);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 18px 30px rgba(0, 0, 0, 0.34);
+    0 22px 34px rgba(0, 0, 0, 0.36);
+}
+
+.audience-card:hover .audience-visual img {
+  transform: scale(1.06);
 }
 
 .getting-started-section {
@@ -1063,17 +1728,122 @@ a:hover img {
 .features-grid {
   display: grid;
   counter-reset: feature-index;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-flow: dense;
   gap: 18px;
   width: 100%;
 }
 
 .features-grid .features-card {
   counter-increment: feature-index;
+  grid-column: span 2;
 }
 
 .features-section {
+  position: relative;
   gap: 2.5rem;
+  padding-top: clamp(1rem, 2vw, 1.8rem);
+}
+
+.features-section::before {
+  content: "";
+  position: absolute;
+  inset: 0 clamp(1rem, 3vw, 2.4rem) auto;
+  height: clamp(210px, 36vw, 320px);
+  border-radius: 28px;
+  background:
+    radial-gradient(75% 100% at 0% 100%, rgba(54, 188, 255, 0.14) 0%, rgba(54, 188, 255, 0) 70%),
+    radial-gradient(70% 100% at 100% 0%, rgba(187, 88, 255, 0.16) 0%, rgba(187, 88, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.features-showcase {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 1.9fr);
+  gap: clamp(1rem, 2vw, 1.4rem);
+  align-items: start;
+}
+
+.features-spotlight {
+  position: sticky;
+  top: clamp(4.5rem, 2vw, 1.5rem);
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(1.05rem, 2vw, 1.3rem);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(90% 120% at 0% 100%, rgba(54, 188, 255, 0.15) 0%, rgba(54, 188, 255, 0) 68%),
+    radial-gradient(95% 100% at 100% 0%, rgba(187, 88, 255, 0.18) 0%, rgba(187, 88, 255, 0) 66%),
+    linear-gradient(165deg, rgba(36, 24, 44, 0.95), rgba(20, 14, 30, 0.98));
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.27),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.features-kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(126, 232, 255, 0.92);
+}
+
+.features-spotlight h3 {
+  margin: 0;
+  font-size: clamp(1.12rem, 1.8vw, 1.36rem);
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.features-signals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.features-signals li {
+  position: relative;
+  padding-left: 1.05rem;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.features-signals li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.48rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #36bcff 0%, #bb58ff 100%);
+}
+
+.features-pulse {
+  margin-top: 0.2rem;
+  padding: 0.58rem 0.7rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.features-pulse span {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.features-grid .features-card:nth-child(1),
+.features-grid .features-card:nth-child(4),
+.features-grid .features-card:nth-child(6),
+.features-grid .features-card:nth-child(8),
+.features-grid .features-card:nth-child(10) {
+  grid-column: span 3;
 }
 
 .features-section .card-header {
@@ -1103,20 +1873,6 @@ a:hover img {
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.hobbyist span,
-.team span,
-.pro span {
-  font-family: "Sora", "Avenir Next", "Segoe UI", sans-serif;
-  display: inline-flex;
-  align-items: center;
-  text-align: left;
-  font-size: clamp(1.2rem, 2.25vw, 1.75rem) !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 .hardware-grid {
@@ -1235,7 +1991,8 @@ a:hover img {
 
 /* ====== Wrapper ====== */
 .pricing-wrap {
-  width: min(1240px, 100%);
+  /* width: min(1240px, 100%); */
+  
   margin-inline: auto;
   margin-top: clamp(2rem, 5vw, 3rem);
   padding: clamp(1.5rem, 3.2vw, 2.35rem);
@@ -1618,6 +2375,56 @@ a:hover img {
   }
 }
 
+@keyframes bridge-flow {
+  from {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+}
+
+@keyframes bridge-flow-reverse {
+  from {
+    transform: translateX(150px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes bridge-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 4px rgba(54, 188, 255, 0.08),
+      0 0 16px rgba(54, 188, 255, 0.35);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 8px rgba(187, 88, 255, 0.13),
+      0 0 22px rgba(187, 88, 255, 0.5);
+  }
+}
+
 @keyframes curve-flow {
   from {
     stroke-dashoffset: 0;
@@ -1645,6 +2452,7 @@ a:hover img {
     background-size: 3px 12px;
     animation: flow-dots-vertical 0.95s linear infinite;
   }
+
 }
 
 @keyframes flow-dots-vertical {
@@ -1724,8 +2532,27 @@ a:hover img {
     padding: 0.5rem 0;
   }
 
+  .features-showcase {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .features-spotlight {
+    position: static;
+  }
+
   .features-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+  }
+
+  .features-grid .features-card,
+  .features-grid .features-card:nth-child(1),
+  .features-grid .features-card:nth-child(4),
+  .features-grid .features-card:nth-child(6),
+  .features-grid .features-card:nth-child(8),
+  .features-grid .features-card:nth-child(10) {
+    grid-column: span 1;
   }
 
   .features-card {
@@ -1740,10 +2567,77 @@ a:hover img {
 
   .who-grid {
     grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+
+  .who-bridge-card {
+    min-height: 0;
+    padding: 1rem;
+  }
+
+  .who-bridge {
+    gap: 0.35rem;
+    min-height: 58px;
+  }
+
+  .who-bridge-fork {
+    grid-template-columns: 58px 86px minmax(84px, max-content) 86px 58px;
+    column-gap: 0.3rem;
+  }
+
+  .bridge-left-stack,
+  .bridge-right-stack {
+    width: 58px;
+  }
+
+  .bridge-line {
+    width: min(20vw, 86px);
+  }
+
+  .bridge-fork-svg {
+    width: min(20vw, 86px);
+    height: 54px;
+  }
+
+  .bridge-core {
+    min-height: 30px;
+    min-width: 30px;
+    padding: 0.28rem 0.58rem;
+    font-size: 0.55rem;
   }
 
   .audience-card {
-    min-height: 200px;
+    min-height: 0;
+    grid-template-rows: 180px auto;
+  }
+
+  .who-headline,
+  .who-headline .subsection-title,
+  .who-subtitle {
+    text-align: center;
+  }
+
+  .who-fit-chips {
+    justify-content: center;
+  }
+
+  .who-network-diagram {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 0.7rem;
+    min-height: 260px;
+  }
+
+  .who-network-left {
+    justify-items: center;
+  }
+
+  .who-network-right {
+    justify-content: center;
+  }
+
+  .who-network-lines {
+    display: none;
   }
 
   .getting-started-intro .subsection-title,
@@ -1766,6 +2660,12 @@ a:hover img {
   .plan + .plan {
     border-left: none;
     border-top: 1px solid;
+  }
+}
+
+@media (max-width: 760px) {
+  .features-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
