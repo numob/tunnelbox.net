@@ -451,6 +451,41 @@ onMounted(() => {
         </div>
       </article>
 
+      <article class="audience-card audience-card-devs" aria-label="Indie and freelance developers">
+        <div class="audience-visual">
+          <img src="/Professional Devs.png" alt="Indie and freelance developers" />
+        </div>
+        <div class="audience-body">
+          <p class="audience-kicker">Fast Local Iteration</p>
+          <h3>Indie & Freelance Developers</h3>
+          <p>
+            Keep building locally while exposing only what clients or teammates need to access for testing and feedback.
+          </p>
+          <ul>
+            <li>Share staging-like previews from your own machine</li>
+            <li>Run secure client demos without cloud redeploys</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="audience-card audience-card-teams" aria-label="Product teams and startups">
+        <div class="audience-visual">
+          <img src="/Teams&Startups.png" alt="Product teams and startups" />
+        </div>
+        <div class="audience-body">
+          <p class="audience-kicker">Team Workflows</p>
+          <h3>Product Teams & Startups</h3>
+          <p>
+            Route multiple services through one hardware gateway and standardize how your team exposes internal environments.
+          </p>
+          <ul>
+            <li>Centralized ingress for QA, support, and integrations</li>
+            <li>Fewer router changes and less misconfiguration risk</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <!-- <div class="who-diagram-row">
       <div class="who-bridge-card" aria-hidden="true">
         <p>Localhost to public URL</p>
         <div class="who-bridge">
@@ -561,49 +596,15 @@ onMounted(() => {
         </div>
       </div>
 
-      <article class="audience-card audience-card-devs" aria-label="Indie and freelance developers">
-        <div class="audience-visual">
-          <img src="/Professional Devs.png" alt="Indie and freelance developers" />
-        </div>
-        <div class="audience-body">
-          <p class="audience-kicker">Fast Local Iteration</p>
-          <h3>Indie & Freelance Developers</h3>
-          <p>
-            Keep building locally while exposing only what clients or teammates need to access for testing and feedback.
-          </p>
-          <ul>
-            <li>Share staging-like previews from your own machine</li>
-            <li>Run secure client demos without cloud redeploys</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="audience-card audience-card-teams" aria-label="Product teams and startups">
-        <div class="audience-visual">
-          <img src="/Teams&Startups.png" alt="Product teams and startups" />
-        </div>
-        <div class="audience-body">
-          <p class="audience-kicker">Team Workflows</p>
-          <h3>Product Teams & Startups</h3>
-          <p>
-            Route multiple services through one hardware gateway and standardize how your team exposes internal environments.
-          </p>
-          <ul>
-            <li>Centralized ingress for QA, support, and integrations</li>
-            <li>Fewer router changes and less misconfiguration risk</li>
-          </ul>
-        </div>
-      </article>
-
       <div class="who-bridge-card" aria-hidden="true">
         <p>One gateway, multiple services</p>
       </div>
-    </div>
+    </div> -->
 
     
   </section>
 
-  <section class="other-section getting-started-section h-screen" aria-labelledby="getting-started-title">
+  <section class="other-section getting-started-section" aria-labelledby="getting-started-title">
     <div class="getting-started-intro">
       <h2 id="getting-started-title" class="subsection-title">Getting Started</h2>
       <p class="subtitle">Three stages to getting started.</p>
@@ -935,8 +936,16 @@ a:hover img {
 .who-grid {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, minmax(280px, 1fr));
   grid-auto-rows: minmax(280px, auto);
+  gap: clamp(0.9rem, 2vw, 1.3rem);
+  align-items: stretch;
+}
+
+.who-diagram-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
   gap: clamp(0.9rem, 2vw, 1.3rem);
   align-items: stretch;
 }
@@ -2568,6 +2577,10 @@ a:hover img {
   .who-grid {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
+  }
+
+  .who-diagram-row {
+    grid-template-columns: 1fr;
   }
 
   .who-bridge-card {
